@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AnimatePresence } from "framer-motion";
-import PageTransition from "./components/PageTransition";
+import AnimatedLayout from "./components/AnimatedLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,11 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AnimatePresence mode="wait">
-          <PageTransition>
-            {children}
-          </PageTransition>
-        </AnimatePresence>
+        <AnimatedLayout>
+          {children}
+        </AnimatedLayout>
       </body>
     </html>
   );

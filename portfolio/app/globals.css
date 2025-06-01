@@ -6,6 +6,11 @@
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
+  --black_alternative: #000000;
+}
+
+.dark {
+  --black_alternative: #ffffff;
 }
 
 body {
@@ -16,4 +21,24 @@ body {
     rgb(var(--background-end-rgb))
   );
   min-height: 100vh;
+}
+
+/* Add smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add custom styles for the preloader */
+.preloader-container {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.dark .preloader-container {
+  background-color: black;
 }

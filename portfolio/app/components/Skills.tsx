@@ -74,24 +74,6 @@ const Skills = () => {
       description: 'Version control system',
     },
     {
-      name: 'Docker',
-      icon: <SiDocker className="w-12 h-12" />,
-      color: 'text-blue-600',
-      description: 'Containerization platform',
-    },
-    {
-      name: 'PostgreSQL',
-      icon: <SiPostgresql className="w-12 h-12" />,
-      color: 'text-blue-400',
-      description: 'Advanced open-source database',
-    },
-    {
-      name: 'Redux',
-      icon: <SiRedux className="w-12 h-12" />,
-      color: 'text-purple-500',
-      description: 'State management library',
-    },
-    {
       name: 'Express',
       icon: <SiExpress className="w-12 h-12" />,
       color: 'text-gray-800 dark:text-gray-200',
