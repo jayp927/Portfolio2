@@ -7,9 +7,15 @@ const JPPreloader = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    setTimeout(() => {
+    // Reset loading state when route changes
+    setIsLoading(true)
+    
+    // Simulate loading time
+    const timer = setTimeout(() => {
       setIsLoading(false)
     }, 3200)
+
+    return () => clearTimeout(timer)
   }, [])
 
   const anim = (variants: Variants) => ({
@@ -27,7 +33,8 @@ const JPPreloader = () => {
       transition: { duration: 3, ease: [0.32, 0, 0.67, 0] },
     },
     exit: {
-      opacity: 1,
+      opacity: 0,
+      transition: { duration: 0.5 }
     },
   }
 
@@ -35,7 +42,7 @@ const JPPreloader = () => {
 
   return (
     <motion.div 
-      className="preloader-container"
+      className="fixed inset-0 z-[9999] flex justify-center items-center bg-black"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
@@ -50,7 +57,7 @@ const JPPreloader = () => {
           {/* Letter J */}
           <motion.path
             d="M40 20 L40 60 C40 70 35 75 25 75 L20 75"
-            stroke="var(--black_alternative)"
+            stroke="#FACC15"
             strokeWidth="4"
             strokeLinecap="round"
             {...anim(lettersVariants)}
@@ -59,7 +66,7 @@ const JPPreloader = () => {
           {/* Letter P */}
           <motion.path
             d="M80 20 L80 75 M80 20 L100 20 C110 20 120 25 120 35 C120 45 110 50 100 50 L80 50"
-            stroke="var(--black_alternative)"
+            stroke="#FACC15"
             strokeWidth="4"
             strokeLinecap="round"
             {...anim(lettersVariants)}
@@ -68,7 +75,7 @@ const JPPreloader = () => {
           {/* Horizontal line */}
           <motion.path
             d="M20 100 L100 100"
-            stroke="var(--black_alternative)"
+            stroke="#FACC15"
             strokeWidth="4"
             strokeLinecap="round"
             {...anim(lettersVariants)}

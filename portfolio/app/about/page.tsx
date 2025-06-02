@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Skills from '../components/Skills'
 
@@ -36,7 +35,6 @@ export default function About() {
 
   return (
     <main className="min-h-screen bg-white">
-      <Header />
       {/* Main Container */}
       <div className="w-full h-[85vh] bg-black text-white rounded-b-[3.3rem] shadow-lg overflow-hidden flex flex-row items-center justify-between px-10 pt-20">
         <div>

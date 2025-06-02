@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa'
-import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 const Contact = () => {
@@ -89,7 +88,6 @@ const Contact = () => {
 
   return (
     <main className="min-h-screen bg-black text-white">
-      <Header />
       
       <div className="max-w-7xl mx-auto px-4 py-16">
         <motion.div

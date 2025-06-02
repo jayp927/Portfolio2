@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import Header from '../components/Header'
+// import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 // Sample project data - replace with your actual projects
@@ -55,7 +55,6 @@ const Projects = () => {
 
   return (
     <main className="min-h-screen bg-black text-white">
-      <Header />
       
       <div className="max-w-7xl mx-auto px-4 py-8">
         <AnimatePresence mode="wait">
