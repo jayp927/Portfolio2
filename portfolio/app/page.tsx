@@ -4,6 +4,16 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiNodedotjs } from 'react-icons/si'
+import dynamic from 'next/dynamic'
+
+const SunScene = dynamic(() => import('./components/SunScene'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[400px] flex items-center justify-center bg-black/20 rounded-lg">
+      <div className="text-gray-400">Loading 3D Scene...</div>
+    </div>
+  ),
+})
 
 export default function Home() {
   const fadeInUp = {
@@ -21,11 +31,11 @@ export default function Home() {
   }
 
   const techStack = [
-    { name: 'React', icon: SiReact },
-    { name: 'Next.js', icon: SiNextdotjs },
-    { name: 'TypeScript', icon: SiTypescript },
-    { name: 'Tailwind', icon: SiTailwindcss },
-    { name: 'Node.js', icon: SiNodedotjs },
+    { name: 'React', icon: SiReact, color: '#61DAFB' },
+    { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
+    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+    { name: 'Tailwind', icon: SiTailwindcss, color: '#38BDF8' },
+    { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
   ]
 
   return (
@@ -111,19 +121,20 @@ export default function Home() {
               variants={fadeInUp}
               className="relative h-[400px] rounded-lg overflow-hidden"
             >
-              <Image
-                src="/images/about-image.jpg"
-                alt="About me"
-                fill
-                className="object-cover"
-              />
+              <SunScene />
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Tech Stack Section */}
-      <section className="py-20 px-4 bg-zinc-900">
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="py-20 px-4 bg-zinc-900"
+      >
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -147,14 +158,14 @@ export default function Home() {
                 className="flex flex-col items-center"
               >
                 <div className="w-20 h-20 flex items-center justify-center mb-4">
-                  <tech.icon className="w-16 h-16 text-gray-300" />
+                  <tech.icon className="w-16 h-16" style={{ color: tech.color }} />
                 </div>
                 <span className="text-gray-300">{tech.name}</span>
               </motion.div>
             ))}
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Section */}
       <section className="py-20 px-4 bg-black">

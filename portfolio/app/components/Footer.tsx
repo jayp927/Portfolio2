@@ -8,22 +8,22 @@ const Footer = () => {
   const socialLinks = [
     {
       name: 'GitHub',
-      icon: <FaGithub className="w-6 h-6" />,
+      icon: <FaGithub className="w-6 h-6" style={{ color: '#181717' }} />,
       url: 'https://github.com/yourusername',
     },
     {
       name: 'LinkedIn',
-      icon: <FaLinkedin className="w-6 h-6" />,
+      icon: <FaLinkedin className="w-6 h-6" style={{ color: '#0077B5' }} />,
       url: 'https://linkedin.com/in/yourusername',
     },
     {
       name: 'Twitter',
-      icon: <FaTwitter className="w-6 h-6" />,
+      icon: <FaTwitter className="w-6 h-6" style={{ color: '#1DA1F2' }} />,
       url: 'https://twitter.com/yourusername',
     },
     {
       name: 'Email',
-      icon: <FaEnvelope className="w-6 h-6" />,
+      icon: <FaEnvelope className="w-6 h-6" style={{ color: '#EA4335' }} />,
       url: 'mailto:your.email@example.com',
     },
   ]
