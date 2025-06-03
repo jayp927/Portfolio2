@@ -1,91 +1,100 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import Image from 'next/image'
+import { motion, animate } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import Footer from '../components/Footer'
 import Skills from '../components/Skills'
 
 export default function About() {
-  const { scrollY } = useScroll()
-  const rotateShip = useTransform(scrollY, [0, 700], [0, 360])
+  const [displayedText, setDisplayedText] = useState('')
+  const [isTypingComplete, setIsTypingComplete] = useState(false)
 
-  const anim = (variants: any) => ({
-    initial: 'initial',
-    animate: 'enter',
-    exit: 'exit',
-    variants,
-  })
-
-  const shipVariants = {
-    initial: {
-      y: 200,
-      opacity: 0,
-    },
-    enter: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: 1,
-        duration: 1.2,
-        type: 'spring',
-        ease: [0.45, 0, 0.55, 1],
-      },
-    },
+  const sentenceVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1, 
+      transition: { 
+        staggerChildren: 0.05 // Revert to initial delay
+       }
+    }
   }
 
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  }
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  }
+
+  const aboutText = "I am a passionate full-stack developer with a keen eye for design and user experience. I love creating beautiful, functional, and responsive web applications that solve real-world problems. My journey in web development started with a curiosity to understand how things work on the internet, which quickly grew into a passion for building interactive and engaging digital experiences. I enjoy turning complex problems into simple, intuitive, and aesthetically pleasing designs. When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects, and playing video games."
+
+  // Typing animation effect
+  useEffect(() => {
+    const typingDuration = aboutText.length * 0.03; // 0.025 seconds per character
+    
+    const controls = animate(0, aboutText.length, {
+      duration: typingDuration,
+      ease: "linear",
+      onUpdate: (latest) => {
+        setDisplayedText(aboutText.slice(0, Math.round(latest)));
+      },
+      onComplete: () => {
+        setIsTypingComplete(true);
+      }
+    });
+
+    return () => controls.stop();
+  }, [aboutText]);
+
   return (
-    <main className="min-h-screen bg-white">
-      {/* Main Container */}
-      <div className="w-full h-[85vh] bg-black text-white rounded-b-[3.3rem] shadow-lg overflow-hidden flex flex-row items-center justify-between px-10 pt-20">
-        <div>
-          <h1 className="text-4xl md:text-5xl italic font-serif border-t-2 w-fit leading-[4rem]">
-            Developer
-          </h1>
-        </div>
-
-        <Image
-          src="/images/jay.jpg"
-          alt="Profile picture"
-          priority
-          width={400}
-          height={400}
-          className="rounded-[8%] shadow-lg shadow-gray-600"
-        />
-
-        <div className="flex flex-row-reverse mb-6 mt-2">
-          <h2 className="text-4xl md:text-5xl italic font-serif text-yellow-400 border-b-2 border-yellow-400 w-fit leading-[4rem]">
-            Engineer
-          </h2>
-        </div>
-      </div>
-
-      {/* Spaceship Section */}
-      <div className="flex justify-center">
-        <motion.div
-          style={{ rotate: rotateShip }}
-          className="relative -top-20 md:-top-24 max-w-fit"
-          {...anim(shipVariants)}
+    <main className="min-h-screen bg-black text-white pt-20">
+      {/* About Me Text Section */}
+      <motion.section 
+        className="max-w-6xl mx-auto px-4 py-12"
+        variants={sectionVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h2 
+          className="text-4xl md:text-5xl font-bold mb-8"
+          variants={sectionVariants}
         >
-          <Image
-            src="/images/spaceship.png"
-            alt="free astronaut"
-            width={200}
-            height={400}
-            className="object-contain md:w-60"
-          />
-        </motion.div>
-      </div>
+          About Me
+        </motion.h2>
+        <motion.p 
+          className="text-lg md:text-xl leading-relaxed inline"
+          variants={sectionVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {displayedText}
+          {/* Blinking Cursor */}
+          {!isTypingComplete && (
+            <motion.span
+              className="inline-block w-1 h-6 ml-1 bg-white align-middle"
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 1, repeat: Infinity, repeatDelay: 0.5 }}
+            >
+              |
+            </motion.span>
+          )}
+           {/* Keep cursor blinking after typing is complete if needed */}
+           {isTypingComplete && (
+            <motion.span
+              className="inline-block w-1 h-6 ml-1 bg-white align-middle"
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 1, repeat: Infinity, repeatDelay: 0.5 }}
+            >
+              |
+            </motion.span>
+          )}
+        </motion.p>
+      </motion.section>
 
-      {/* About Text Sections */}
-      <div className="px-4 md:px-8 lg:px-16">
-        <p className="text-lg md:text-xl mb-10 -mt-2">
-          I am a passionate frontend developer and creative engineer, dedicated to transforming ideas into reality through innovative web solutions.
-        </p>
-        <p className="text-lg md:text-xl mb-10">
-          With a strong foundation in modern web technologies and a keen eye for design, I strive to create engaging and user-friendly digital experiences.
-        </p>
-      </div>
-
+      {/* Skills Section */}
       <Skills />
 
       {/* Contact Section */}
