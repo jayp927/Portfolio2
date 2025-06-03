@@ -46,57 +46,59 @@ export default function Home() {
       transition={{ duration: 0.5 }}
     >
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-zinc-900 to-black">
+      <section className="relative min-h-screen flex flex-col overflow-hidden bg-gradient-to-br from-black via-zinc-900 to-black pt-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-400/20 via-transparent to-transparent" />
         
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
-          <div className="flex flex-col items-center">
-            {/* Name Text */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center h-full">
+          {/* Container for layered text and image */}
+          <div className="relative w-full max-w-lg mx-auto">
+            {/* Name Text - Positioned relatively below the image layer */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-6xl md:text-8xl font-bold text-center leading-none mb-12"
+              className="text-6xl md:text-8xl font-bold text-center leading-none relative z-0"
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-200">
                 JAY PIPALIYA
               </span>
             </motion.h1>
 
-            {/* Image */}
+            {/* Image - Positioned absolutely over the text */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="w-[300px] h-[200px] mb-12"
+              className="absolute inset-0 flex items-center justify-center z-10 mt-[21vw] translate-y-12"
             >
               <Image
                 src="/images/jay.jpg"
                 alt="Jay Pipaliya"
-                fill
+                width={300}
+                height={250}
                 className="object-cover rounded-lg"
                 priority
               />
             </motion.div>
-
-            {/* Role and CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-center"
-            >
-              <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                Full Stack Developer & UI/UX Enthusiast
-              </p>
-              <Link
-                href="/projects"
-                className="bg-yellow-400 text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-300 transition-colors"
-              >
-                View My Work
-              </Link>
-            </motion.div>
           </div>
+
+          {/* Role and CTA - Positioned below the image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-center text-[23px] relative z-20 mt-[17.5vw]"
+          >
+            <p className="text-xl md:text-4xl font-semibold text-yellow-400 mb-8">
+              Full Stack Developer & UI/UX Enthusiast
+            </p>
+            <Link
+              href="/projects"
+              className="bg-yellow-400 text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-300 transition-colors"
+            >
+              View My Work
+            </Link>
+          </motion.div>
         </div>
       </section>
 
