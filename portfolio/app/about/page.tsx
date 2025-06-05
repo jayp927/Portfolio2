@@ -2,7 +2,6 @@
 
 import { motion, animate } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import Footer from '../components/Footer'
 import Skills from '../components/Skills'
 
 export default function About() {
@@ -14,7 +13,7 @@ export default function About() {
     visible: { 
       opacity: 1, 
       transition: { 
-        staggerChildren: 0.05 // Revert to initial delay
+        staggerChildren: 0.05
        }
     }
   }
@@ -33,7 +32,7 @@ export default function About() {
 
   // Typing animation effect
   useEffect(() => {
-    const typingDuration = aboutText.length * 0.03; // 0.025 seconds per character
+    const typingDuration = aboutText.length * 0.015; // Increased typing speed
     
     const controls = animate(0, aboutText.length, {
       duration: typingDuration,
@@ -50,10 +49,10 @@ export default function About() {
   }, [aboutText]);
 
   return (
-    <main className="min-h-screen bg-black text-white pt-20">
+    <main className="min-h-screen bg-black text-white">
       {/* About Me Text Section */}
       <motion.section 
-        className="max-w-6xl mx-auto px-4 py-12"
+        className="max-w-6xl mx-auto px-4 py-12 pt-20"
         variants={sectionVariants}
         initial="hidden"
         animate="visible"
@@ -95,7 +94,9 @@ export default function About() {
       </motion.section>
 
       {/* Skills Section */}
-      <Skills />
+      <div className="relative z-10 bg-black">
+        <Skills />
+      </div>
 
       {/* Contact Section */}
       <div className="mx-8 my-8">
@@ -108,8 +109,6 @@ export default function About() {
           </p>
         </a>
       </div>
-
-      <Footer />
     </main>
   )
 } 

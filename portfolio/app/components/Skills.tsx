@@ -22,7 +22,7 @@ const Skills = () => {
     {
       name: 'Next.js',
       icon: <SiNextdotjs className="w-12 h-12" />,
-      color: 'text-black dark:text-white',
+      color: 'text-white',
       description: 'Full-stack React framework for production',
     },
     {
@@ -76,7 +76,7 @@ const Skills = () => {
     {
       name: 'Express',
       icon: <SiExpress className="w-12 h-12" />,
-      color: 'text-gray-800 dark:text-gray-200',
+      color: 'text-gray-200',
       description: 'Web application framework for Node.js',
     },
   ]
@@ -103,13 +103,13 @@ const Skills = () => {
   }
 
   return (
-    <section className="py-20 px-4 bg-white dark:bg-gray-900">
+    <section className="py-20 px-4 relative z-10 bg-black">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white"
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-4xl font-bold text-center mb-12 text-white"
         >
           Skills & Technologies
         </motion.h2>
@@ -118,7 +118,7 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
         >
           {skills.map((skill, index) => (
@@ -126,13 +126,13 @@ const Skills = () => {
               key={skill.name}
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              className="flex flex-col items-center p-6 bg-black/40 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-white/20"
             >
               <div className={`${skill.color} mb-4`}>{skill.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-lg font-semibold text-white mb-2">
                 {skill.name}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 text-center">
+              <p className="text-sm text-gray-300 text-center">
                 {skill.description}
               </p>
             </motion.div>

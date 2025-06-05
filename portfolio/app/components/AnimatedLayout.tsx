@@ -13,33 +13,30 @@ export default function AnimatedLayout({
 }) {
   const pathname = usePathname()
   const [isLoading, setIsLoading] = useState(true)
+  const [isFirstLoad, setIsFirstLoad] = useState(true)
 
-  // Force a re-render of the preloader when the pathname changes
   useEffect(() => {
-    // This will trigger the preloader to show again
-    window.scrollTo(0, 0)
-    setIsLoading(true)
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 4000)
-    return () => clearTimeout(timer)
-  }, [pathname])
+    if (isFirstLoad) {
+      const timer = setTimeout(() => {
+        setIsLoading(false)
+        setIsFirstLoad(false)
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [isFirstLoad])
 
   return (
     <>
-      <JPPreloader />
+      {isFirstLoad && <JPPreloader />}
       {!isLoading && <Navbar />}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={pathname}
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -100 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
+      <motion.div
+        key={pathname}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        {children}
+      </motion.div>
     </>
   )
 } 
