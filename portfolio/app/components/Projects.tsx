@@ -1,31 +1,35 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { useState } from 'react'
+import useProjects from '../hooks/useProjects'
+import useMedia from '../hooks/useMedia'
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "Project 1",
-      description: "A full-stack web application built with Next.js and TypeScript",
-      image: "/images/project1.jpg",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
-      link: "#"
-    },
-    {
-      title: "Project 2",
-      description: "A responsive web application with modern UI/UX",
-      image: "/images/project2.jpg",
-      technologies: ["React", "Node.js", "MongoDB"],
-      link: "#"
-    },
-    // Add more projects as needed
-  ]
+  const projects = useProjects()
+  const { isMobile } = useMedia()
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 100 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+  const currentProject = projects[currentProjectIndex]
+
+  const nextProject = () => {
+    setCurrentProjectIndex((prev) => (prev + 1) % projects.length)
+    setCurrentImageIndex(0)
+  }
+
+  const prevProject = () => {
+    setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length)
+    setCurrentImageIndex(0)
+  }
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % currentProject.images.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + currentProject.images.length) % currentProject.images.length)
   }
 
   return (
@@ -40,48 +44,119 @@ const Projects = () => {
         >
           Featured Projects
         </motion.h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+
+        <div className="max-w-4xl mx-auto">
+          <AnimatePresence mode="wait">
             <motion.div
-              key={index}
-              variants={fadeInUp}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              className="bg-black/50 rounded-lg overflow-hidden"
+              key={currentProjectIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 mb-8"
             >
-              <div className="relative h-48">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative w-full h-[450px] mb-8 rounded-xl overflow-hidden bg-zinc-900">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentImageIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full h-full relative"
+                  >
+                    <Image
+                      src={currentProject.images[currentImageIndex]}
+                      alt={currentProject.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-black/70 px-4 py-2 rounded-full">
+                  <button onClick={prevImage} className="text-white hover:text-yellow-400 transition-colors">
+                    ←
+                  </button>
+                  <span className="text-white text-sm">
+                    {currentImageIndex + 1} / {currentProject.images.length}
+                  </span>
+                  <button onClick={nextImage} className="text-white hover:text-yellow-400 transition-colors">
+                    →
+                  </button>
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                <p className="text-gray-300 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
+
+              <div className="space-y-6">
+                <h3 className="text-4xl font-bold text-white">{currentProject.name}</h3>
+                <div className="space-y-4">
+                  {currentProject.description.map((paragraph, index) => (
+                    <p key={index} className="text-gray-300 text-lg leading-relaxed">
+                      {paragraph}
+                    </p>
                   ))}
                 </div>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-yellow-400 text-black px-6 py-2 rounded-full hover:bg-yellow-300 transition-colors"
-                >
-                  View Project
-                </a>
+                <div>
+                  <h4 className="text-2xl font-bold text-white mb-4">Tech Stack:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {currentProject.techStack.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="px-4 py-2 bg-yellow-400/10 text-yellow-400 rounded-full text-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {currentProject.collaborators && (
+                  <div>
+                    <h4 className="text-2xl font-bold text-white mb-4">Collaborators:</h4>
+                    <div className="flex flex-wrap gap-4">
+                      {currentProject.collaborators.map((collaborator, index) => (
+                        <a
+                          key={index}
+                          href={collaborator.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-300 hover:text-yellow-400 transition-colors border-b border-gray-600 hover:border-yellow-400"
+                        >
+                          {collaborator.name} - {collaborator.role}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div className="pt-4">
+                  <a
+                    href={currentProject.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-yellow-400 text-black px-8 py-3 rounded-full text-lg font-bold hover:bg-yellow-300 transition-colors"
+                  >
+                    View Project
+                  </a>
+                </div>
               </div>
             </motion.div>
-          ))}
+          </AnimatePresence>
+
+          <div className="flex justify-between items-center bg-white/5 backdrop-blur-sm rounded-xl p-4">
+            <button
+              onClick={prevProject}
+              className="text-white hover:text-yellow-400 transition-colors"
+            >
+              ← Previous Project
+            </button>
+            <span className="text-white text-sm">
+              {currentProjectIndex + 1} / {projects.length}
+            </span>
+            <button
+              onClick={nextProject}
+              className="text-white hover:text-yellow-400 transition-colors"
+            >
+              Next Project →
+            </button>
+          </div>
         </div>
       </div>
     </section>
