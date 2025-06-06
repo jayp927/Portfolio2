@@ -1,56 +1,48 @@
-export interface Project {
-  name: string;
-  description: string[];
-  images: string[];
-  techStack: string[];
-  url: string;
-  collaborators?: {
-    name: string;
-    role: string;
-    linkedin: string;
-  }[];
+import { Project } from '../types'
+
+const useProjects = (): Project[] => {
+  return [
+    {
+      name: 'Helper Buddy',
+      description: [
+        '🚀 A comprehensive service marketplace platform built during Google Winter of Code at SVNIT, designed to connect users with skilled service providers.',
+        'The platform offers a seamless experience for finding and booking various services, from plumbing and electrical work to beauty services, making everyday service needs more accessible and efficient.',
+        'Key features include smart service discovery with advanced filters and customer reviews, a comprehensive admin dashboard for analytics, a robust service provider verification system, secure authentication with OTP verification, blog management capabilities, and seamless payment integration with Razorpay.'
+      ],
+      techStack: [
+        'Next.js',
+        'TypeScript',
+        'Tailwind CSS',
+        'Razorpay',
+        'Firebase'
+      ],
+      images: [
+        '/images/projects/project1-1.png',
+        '/images/projects/project1-2.png',
+        '/images/projects/project1-3.png'
+      ],
+      url: 'https://helper-buddy.vercel.app'
+    },
+    {
+      name: 'Project Two',
+      description: [
+        'Description for project two will go here.',
+        'This is a placeholder for the second project description.'
+      ],
+      techStack: [
+        'React',
+        'Node.js',
+        'MongoDB',
+        'Express'
+      ],
+      images: [
+        '/images/projects/project1-1.png',
+        '/images/projects/project1-2.png',
+        '/images/projects/project1-3.png'
+      ],
+      url: 'https://project-two.com'
+    }
+  ]
 }
 
-const projects: Project[] = [
-  {
-    name: "Portfolio Website",
-    description: [
-      "A modern portfolio website built with Next.js and TypeScript, featuring smooth animations and a responsive design.",
-      "The site showcases my projects and skills with an interactive 3D scene and dynamic content loading."
-    ],
-    images: [
-      "/images/projects/project1-1.png",
-      "/images/projects/project1-2.png",
-      "/images/projects/project1-3.png"
-    ],
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js"],
-    url: "https://github.com/yourusername/portfolio"
-  },
-  {
-    name: "E-commerce Platform",
-    description: [
-      "A full-featured e-commerce platform with real-time inventory management and secure payment processing.",
-      "Built with modern web technologies and optimized for performance and user experience."
-    ],
-    images: [
-      "/images/projects/project1-1.png",
-      "/images/projects/project1-2.png",
-      "/images/projects/project1-3.png"
-    ],
-    techStack: ["React", "Node.js", "MongoDB", "Stripe", "Redux"],
-    url: "https://github.com/yourusername/ecommerce",
-    collaborators: [
-      {
-        name: "John Doe",
-        role: "Backend Developer",
-        linkedin: "https://linkedin.com/in/johndoe"
-      }
-    ]
-  }
-];
-
-const useProjects = () => {
-  return projects;
-};
-
-export default useProjects; 
+export default useProjects 
