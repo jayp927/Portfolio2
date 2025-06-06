@@ -103,7 +103,7 @@ const Skills = () => {
   }
 
   return (
-    <section className="py-20 px-4 relative z-10 bg-black">
+    <section id="skills" className="py-20 px-4 relative z-10">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -126,7 +126,7 @@ const Skills = () => {
               key={skill.name}
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center p-6 bg-black/40 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-white/20"
+              className="flex flex-col items-center p-6 bg-white/10 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-white/20"
             >
               <div className={`${skill.color} mb-4`}>{skill.icon}</div>
               <h3 className="text-lg font-semibold text-white mb-2">

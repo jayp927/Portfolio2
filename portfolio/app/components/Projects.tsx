@@ -33,8 +33,7 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="py-20 px-4 bg-gradient-to-br from-black via-zinc-900 to-black relative">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-400/20 via-transparent to-transparent" />
+    <section id="projects" className="py-20 px-4 relative">
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

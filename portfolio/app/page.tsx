@@ -10,28 +10,6 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 
 export default function Home() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 100 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-  }
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const techStack = [
-    { name: 'React', icon: SiReact, color: '#61DAFB' },
-    { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
-    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
-    { name: 'Tailwind', icon: SiTailwindcss, color: '#38BDF8' },
-    { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-  ]
-
   return (
     <motion.main 
       className="min-h-screen"
@@ -42,8 +20,18 @@ export default function Home() {
       <SocialLinks />
       
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex flex-col overflow-hidden bg-gradient-to-br from-black via-zinc-900 to-black pt-7">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-400/20 via-transparent to-transparent" />
+      <section id="home" className="relative min-h-screen flex flex-col overflow-hidden">
+        {/* Sticky Background Image */}
+        <div className="fixed inset-0 w-full h-full">
+          <Image
+            src="/images/background.jpg"
+            alt="Background"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50" /> {/* Overlay for better text readability */}
+        </div>
         
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center h-full">
           <div className="relative w-full max-w-lg mx-auto">
@@ -96,42 +84,6 @@ export default function Home() {
 
       <About />
       <Skills />
-      
-      {/* Tech Stack Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-black via-zinc-900 to-black relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-400/20 via-transparent to-transparent" />
-        <div className="max-w-6xl mx-auto relative z-10">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl font-bold text-center mb-12"
-          >
-            Tech Stack
-          </motion.h2>
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-5 gap-8"
-          >
-            {techStack.map((tech) => (
-              <motion.div
-                key={tech.name}
-                variants={fadeInUp}
-                className="flex flex-col items-center"
-              >
-                <div className="w-20 h-20 flex items-center justify-center mb-4">
-                  <tech.icon className="w-16 h-16" style={{ color: tech.color }} />
-                </div>
-                <span className="text-gray-300 text-xl">{tech.name}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       <Projects />
       <Contact />
     </motion.main>

@@ -19,9 +19,9 @@ const projects: Project[] = [
       "The site showcases my projects and skills with an interactive 3D scene and dynamic content loading."
     ],
     images: [
-      "/images/project1.jpg",
-      "/images/project2.jpg",
-      "/images/project3.jpg"
+      "/images/projects/project1-1.png",
+      "/images/projects/project1-2.png",
+      "/images/projects/project1-3.png"
     ],
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js"],
     url: "https://github.com/yourusername/portfolio"
@@ -33,8 +33,9 @@ const projects: Project[] = [
       "Built with modern web technologies and optimized for performance and user experience."
     ],
     images: [
-      "/images/project4.jpg",
-      "/images/project5.jpg"
+      "/images/projects/project1-1.png",
+      "/images/projects/project1-2.png",
+      "/images/projects/project1-3.png"
     ],
     techStack: ["React", "Node.js", "MongoDB", "Stripe", "Redux"],
     url: "https://github.com/yourusername/ecommerce",

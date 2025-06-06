@@ -30,11 +30,15 @@ const JPPreloader = () => {
     enter: {
       pathLength: 1,
       opacity: 1,
-      transition: { duration: 3, ease: [0.32, 0, 0.67, 0] },
+      transition: { 
+        duration: 1.5,
+        ease: [0.32, 0, 0.67, 0],
+        repeat: 0
+      },
     },
     exit: {
       opacity: 0,
-      transition: { duration: 0.5 }
+      transition: { duration: 0.3 }
     },
   }
 

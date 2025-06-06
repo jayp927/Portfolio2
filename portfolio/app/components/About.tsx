@@ -1,16 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import dynamic from 'next/dynamic'
-
-const SunScene = dynamic(() => import('./SunScene'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-[400px] flex items-center justify-center bg-black/20 rounded-lg">
-      <div className="text-gray-400">Loading 3D Scene...</div>
-    </div>
-  ),
-})
 
 const About = () => {
   const fadeInUp = {
@@ -19,39 +9,37 @@ const About = () => {
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
   }
 
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
   return (
-    <section id="about" className="py-20 px-4 bg-gradient-to-br from-black via-zinc-900 to-black relative">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-400/20 via-transparent to-transparent" />
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="about" className="min-h-screen py-20 px-4 relative flex items-center">
+      <div className="max-w-7xl mx-auto w-full">
         <motion.div
-          variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-12 items-center"
+          className="max-w-4xl mx-auto"
         >
           <motion.div variants={fadeInUp}>
-            <h2 className="text-5xl font-bold mb-6">About Me</h2>
-            <p className="text-gray-300 text-2xl leading-relaxed">
-              I'm a passionate full-stack developer with a keen eye for design and user experience.
-              I love creating beautiful, functional, and responsive web applications that solve real-world problems.
-              My journey in web development started with a curiosity to understand how things work on the internet,
-              which quickly grew into a passion for building interactive and engaging digital experiences.
-            </p>
-          </motion.div>
-          <motion.div
-            variants={fadeInUp}
-            className="relative h-[400px] rounded-lg overflow-hidden"
-          >
-            <SunScene />
+            <h2 className="text-5xl font-bold mb-8 text-center">About Me</h2>
+            <div className="space-y-6">
+              <p className="text-gray-300 text-2xl leading-relaxed">
+                I'm a passionate full-stack developer with a keen eye for design and user experience.
+                I love creating beautiful, functional, and responsive web applications that solve real-world problems.
+              </p>
+              <p className="text-gray-300 text-2xl leading-relaxed">
+                My journey in web development started with a curiosity to understand how things work on the internet,
+                which quickly grew into a passion for building interactive and engaging digital experiences.
+              </p>
+              <p className="text-gray-300 text-2xl leading-relaxed">
+                I specialize in modern web technologies and frameworks, always staying up-to-date with the latest trends
+                and best practices in the industry. My goal is to create seamless user experiences that not only look
+                great but also perform exceptionally well.
+              </p>
+              <p className="text-gray-300 text-2xl leading-relaxed">
+                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
+                or sharing my knowledge with the developer community. I believe in continuous learning and pushing the
+                boundaries of what's possible on the web.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </div>
