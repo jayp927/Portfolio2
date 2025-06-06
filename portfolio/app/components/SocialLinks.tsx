@@ -13,7 +13,7 @@ const SocialLinks = () => {
       className="fixed top-6 left-6 z-50 flex gap-6"
     >
       <a
-        href="https://github.com/yourusername"
+        href="https://github.com/jayp927"
         target="_blank"
         rel="noopener noreferrer"
         className="text-3xl text-[#333] hover:text-[#6e5494] transition-colors"
@@ -21,7 +21,7 @@ const SocialLinks = () => {
         <FaGithub />
       </a>
       <a
-        href="https://linkedin.com/in/yourusername"
+        href="https://www.linkedin.com/in/jay-pipaliya-117369326/"
         target="_blank"
         rel="noopener noreferrer"
         className="text-3xl text-[#0077b5] hover:text-[#00a0dc] transition-colors"
@@ -29,7 +29,7 @@ const SocialLinks = () => {
         <FaLinkedin />
       </a>
       <a
-        href="/resume.pdf"
+        href="https://drive.google.com/file/d/1MuqtAhoh2Iw8dwx9UhJMX4S5Ki-IVmb0/view?usp=drive_link"
         target="_blank"
         rel="noopener noreferrer"
         className="text-3xl text-[#e74c3c] hover:text-[#c0392b] transition-colors"

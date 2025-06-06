@@ -49,19 +49,19 @@ const Contact = () => {
     {
       name: 'GitHub',
       icon: <FaGithub className="w-6 h-6" />,
-      url: 'https://github.com/yourusername',
+      url: 'https://github.com/jayp927',
       color: 'hover:text-gray-400'
     },
     {
       name: 'LinkedIn',
       icon: <FaLinkedin className="w-6 h-6" />,
-      url: 'https://linkedin.com/in/yourusername',
+      url: 'https://www.linkedin.com/in/jay-pipaliya-117369326/',
       color: 'hover:text-blue-500'
     },
     {
       name: 'Email',
       icon: <FaEnvelope className="w-6 h-6" />,
-      url: 'mailto:your.email@example.com',
+      url: 'mail.to:jaypipaliya0101@gmail.com',
       color: 'hover:text-red-500'
     }
   ]
