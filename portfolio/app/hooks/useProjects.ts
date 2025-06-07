@@ -21,7 +21,7 @@ const useProjects = (): Project[] => {
         '/images/projects/project1-2.png',
         '/images/projects/project1-3.png'
       ],
-      url: 'https://helper-buddy.vercel.app'
+      url: 'https://dudh-kela.netlify.app/'
     },
     {
       name: 'Project Two',

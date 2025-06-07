@@ -5,9 +5,10 @@ import Image from 'next/image'
 import { useState } from 'react'
 import useProjects from '../hooks/useProjects'
 import useMedia from '../hooks/useMedia'
+import { Project } from '../types'
 
 const Projects = () => {
-  const projects = useProjects()
+  const projects: Project[] = useProjects()
   const { isMobile } = useMedia()
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -88,7 +89,7 @@ const Projects = () => {
               <div className="space-y-6">
                 <h3 className="text-4xl font-bold text-white">{currentProject.name}</h3>
                 <div className="space-y-4">
-                  {currentProject.description.map((paragraph, index) => (
+                  {currentProject.description.map((paragraph: string, index: number) => (
                     <p key={index} className="text-gray-300 text-lg leading-relaxed">
                       {paragraph}
                     </p>
@@ -97,7 +98,7 @@ const Projects = () => {
                 <div>
                   <h4 className="text-2xl font-bold text-white mb-4">Tech Stack:</h4>
                   <div className="flex flex-wrap gap-2">
-                    {currentProject.techStack.map((tech, index) => (
+                    {currentProject.techStack.map((tech: string, index: number) => (
                       <span
                         key={index}
                         className="px-4 py-2 bg-yellow-400/10 text-yellow-400 rounded-full text-sm"
@@ -111,7 +112,7 @@ const Projects = () => {
                   <div>
                     <h4 className="text-2xl font-bold text-white mb-4">Collaborators:</h4>
                     <div className="flex flex-wrap gap-4">
-                      {currentProject.collaborators.map((collaborator, index) => (
+                      {currentProject.collaborators.map((collaborator: { name: string; role: string; linkedin: string; }, index: number) => (
                         <a
                           key={index}
                           href={collaborator.linkedin}
