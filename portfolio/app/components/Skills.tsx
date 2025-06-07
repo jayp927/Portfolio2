@@ -132,7 +132,7 @@ const Skills = () => {
               <h3 className="text-lg font-semibold text-white mb-2">
                 {skill.name}
               </h3>
-              <p className="text-sm text-gray-300 text-center">
+              <p className="hidden md:block text-sm text-gray-300 text-center">
                 {skill.description}
               </p>
             </motion.div>
