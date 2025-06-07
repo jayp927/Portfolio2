@@ -34,25 +34,25 @@ export default function Home() {
         </div>
         
         {/* Content */} {/* Adjusted layout for responsiveness */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center justify-center h-full text-center pt-16 pb-8 md:pt-24 md:pb-12">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center justify-center h-full text-center pt-16 pb-8">
           
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-9xl font-bold leading-none mb-8"
+              className="relative z-10 text-5xl md:text-8xl font-bold leading-none mb-8"
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-200">
-                JAY PIPALIYA
+                JAY<br/>PIPALIYA
               </span>
             </motion.h1>
 
             
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 1, scale: 0.8 }}
+                animate={{ scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative w-48 h-48 md:w-64 md:h-64 rounded-lg overflow-hidden mb-8"
+                className="relative z-20 w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full overflow-hidden mb-8 -mt-20 md:-mt-51"
               >
                 <Image
                   src="/images/jay.jpg"
@@ -63,12 +63,12 @@ export default function Home() {
                 />
               </motion.div>
             
-
+            {/* Text and Button repositioned after image */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="space-y-6"
+              className="relative z-10 space-y-6 z-100"
             >
               <p className="text-xl md:text-5xl font-semibold text-yellow-400">
                 Full Stack Developer & UI/UX Enthusiast
