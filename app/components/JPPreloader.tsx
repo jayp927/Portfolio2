@@ -5,11 +5,10 @@ import { useEffect, useState } from 'react'
 
 const JPPreloader = () => {
   const [isLoading, setIsLoading] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    // Reset loading state when route changes
-    setIsLoading(true)
-    
+    setIsMounted(true)
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false)
@@ -17,6 +16,8 @@ const JPPreloader = () => {
 
     return () => clearTimeout(timer)
   }, [])
+
+  if (!isMounted) return null
 
   const anim = (variants: Variants) => ({
     initial: 'initial',
@@ -42,14 +43,13 @@ const JPPreloader = () => {
     },
   }
 
-  if (!isLoading) return null
-
   return (
     <motion.div 
       className="fixed inset-0 z-[9999] flex justify-center items-center bg-black"
       initial={{ opacity: 1 }}
+      animate={{ opacity: isLoading ? 1 : 0 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
     >
       <svg
         className="w-32 h-32"

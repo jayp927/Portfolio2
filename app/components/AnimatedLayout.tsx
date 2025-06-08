@@ -14,8 +14,10 @@ export default function AnimatedLayout({
   const pathname = usePathname()
   const [isLoading, setIsLoading] = useState(true)
   const [isFirstLoad, setIsFirstLoad] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
     if (isFirstLoad) {
       const timer = setTimeout(() => {
         setIsLoading(false)
@@ -25,18 +27,24 @@ export default function AnimatedLayout({
     }
   }, [isFirstLoad])
 
+  if (!isMounted) return null
+
   return (
     <>
       {isFirstLoad && <JPPreloader />}
-      {!isLoading && <Navbar />}
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-      >
-        {children}
-      </motion.div>
+      {!isFirstLoad && (
+        <>
+          <Navbar />
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            {children}
+          </motion.div>
+        </>
+      )}
     </>
   )
 } 
