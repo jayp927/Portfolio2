@@ -117,9 +117,9 @@ const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-yellow-400 text-black px-8 py-3 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="border border-white text-white px-6 py-3 rounded-full text-lg hover:bg-white hover:text-blue-600 transition-colors shadow-lg flex items-center justify-center mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? 'Sending...' : 'Send Message'} <span className="ml-2">→</span>
             </button>
 
             {submitStatus === 'success' && (

@@ -131,9 +131,9 @@ const Projects = () => {
                     href={currentProject.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block bg-yellow-400 text-black px-8 py-3 rounded-full text-lg font-bold hover:bg-yellow-300 transition-colors"
+                    className="border border-white text-white px-6 py-3 rounded-full text-lg hover:bg-white hover:text-blue-600 transition-colors shadow-lg inline-flex items-center"
                   >
-                    View Project
+                    View Project <span className="ml-2">→</span>
                   </a>
                 </div>
               </div>

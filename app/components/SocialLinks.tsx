@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaBehance, FaDribbble, FaLinkedinIn } from 'react-icons/fa'
+// Removed: import { FaBehance, FaDribbble, FaLinkedinIn } from 'react-icons/fa'
 
 const SocialLinks = () => {
   return (
@@ -13,6 +13,8 @@ const SocialLinks = () => {
     >
       {/* Removed: <p className="text-white text-sm tracking-widest">FOLLOW ME ON</p> */}
       {/* Removed: <div className="w-px h-16 bg-white opacity-50" /> */}
+      {/* Removed the social media icons */}
+      {/*
       <div className="flex flex-col space-y-6">
         <a
           href="#"
@@ -39,6 +41,7 @@ const SocialLinks = () => {
           <FaLinkedinIn />
         </a>
       </div>
+      */}
       {/* Removed: <div className="w-px h-16 bg-white opacity-50" /> */}
     </motion.div>
   )
