@@ -3,46 +3,41 @@ import { Project } from '../types'
 const useProjects = (): Project[] => {
   return [
     {
-      name: 'Helper Buddy',
-      description: [
-        '🚀 A comprehensive service marketplace platform built during Google Winter of Code at SVNIT, designed to connect users with skilled service providers.',
-        'The platform offers a seamless experience for finding and booking various services, from plumbing and electrical work to beauty services, making everyday service needs more accessible and efficient.',
-        'Key features include smart service discovery with advanced filters and customer reviews, a comprehensive admin dashboard for analytics, a robust service provider verification system, secure authentication with OTP verification, blog management capabilities, and seamless payment integration with Razorpay.'
+      "name": "Helper Buddy",
+      "description": [
+        "🚀 A comprehensive service marketplace platform built during Google Winter of Code at SVNIT, designed to connect users with skilled service providers.",
+        "The platform offers a seamless experience for finding and booking various services, from plumbing and electrical work to beauty services, making everyday service needs more accessible and efficient.",
+        "Key features include smart service discovery with advanced filters and customer reviews, a comprehensive admin dashboard for analytics, a robust service provider verification system, secure authentication with OTP verification, blog management capabilities, and seamless payment integration with Razorpay."
       ],
-      techStack: [
-        'Next.js',
-        'TypeScript',
-        'Tailwind CSS',
-        'Razorpay',
-        'Firebase'
+      "techStack": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Razorpay",
+        "Firebase"
       ],
-      images: [
-        '/images/projects/project1-1.png',
-        '/images/projects/project1-2.png',
-        '/images/projects/project1-3.png'
+      "images": [
+        "/images/projects/project1-1.png",
+        "/images/projects/project1-2.png",
+        "/images/projects/project1-3.png"
       ],
-      url: 'https://dudh-kela.netlify.app/'
+      "url": "https://dudh-kela.netlify.app/"
     },
     {
-      name: 'Project Two',
-      description: [
-        'Description for project two will go here.',
-        'This is a placeholder for the second project description.'
+      "name": "No Cow Factory",
+      "description": [
+        "🚀 Introducing No Cow Factory – A Zero Cow Factory Replica! 🐄❌",
+        "Excited to share a frontend – No Cow Factory, a replica of Zero Cow Factory's website! 🌱✨ Built using Next.js, Framer Motion, and TypeScript, this project was all about refining our UI/UX and animation skills while crafting a smooth, responsive, and visually appealing experience. Though it's just a frontend showcase, we focused on attention to detail, modern design principles, and seamless interactions to bring our vision to life.",
+        "This project was a great learning experience in component-based design, performance optimization, and animation workflows. A huge shoutout to my amazing teammates for their dedication and creativity! 🚀 Would love to hear your thoughts—check it out and let us know what you think! 💡"
       ],
-      techStack: [
-        'React',
-        'Node.js',
-        'MongoDB',
-        'Express'
-      ],
-      images: [
-        '/images/projects/project1-1.png',
-        '/images/projects/project1-2.png',
-        '/images/projects/project1-3.png'
-      ],
-      url: 'https://project-two.com'
+      "techStack": ["Next.js", "Framer Motion", "TypeScript"],
+      "url": "https://no-cow-factory.vercel.app/",
+      "images": [
+        "/images/projects/project2-1.png",
+        "/images/projects/project2-2.png",
+      ]
     }
   ]
 }
 
-export default useProjects 
+export default useProjects
