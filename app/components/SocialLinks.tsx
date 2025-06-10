@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-// Removed: import { FaBehance, FaDribbble, FaLinkedinIn } from 'react-icons/fa'
+import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
 const SocialLinks = () => {
   return (
@@ -11,38 +11,16 @@ const SocialLinks = () => {
       transition={{ duration: 0.8, delay: 0.6 }}
       className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-6 z-50"
     >
-      {/* Removed: <p className="text-white text-sm tracking-widest">FOLLOW ME ON</p> */}
+    
       {/* Removed: <div className="w-px h-16 bg-white opacity-50" /> */}
-      {/* Removed the social media icons */}
-      {/*
-      <div className="flex flex-col space-y-6">
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-white text-2xl hover:text-blue-400 transition-colors"
-        >
-          <FaBehance />
+      <div className="hidden md:flex fixed top-8 left-8 z-50 space-x-4">
+        <a href="https://www.linkedin.com/in/jay-pipaliya-117369326/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400 transition-colors">
+          <FaLinkedin size={32} />
         </a>
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-white text-2xl hover:text-pink-400 transition-colors"
-        >
-          <FaDribbble />
-        </a>
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-white text-2xl hover:text-blue-600 transition-colors"
-        >
-          <FaLinkedinIn />
+        <a href="https://github.com/jayp927" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400 transition-colors">
+          <FaGithub size={32} />
         </a>
       </div>
-      */}
-      {/* Removed: <div className="w-px h-16 bg-white opacity-50" /> */}
     </motion.div>
   )
 }
