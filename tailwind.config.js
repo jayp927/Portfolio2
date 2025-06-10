@@ -11,6 +11,15 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      keyframes: {
+        'pulse-slow': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+        }
+      },
+      animation: {
+        'pulse-slow': 'pulse-slow 3s infinite ease-in-out',
+      }
     },
   },
   plugins: [],

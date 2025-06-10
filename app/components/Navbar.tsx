@@ -93,7 +93,7 @@ const Navbar = () => {
                   onClick={() => scrollToSection(item.path.slice(1))}
                   className={`px-3 py-2 text-sm font-medium transition-colors ${
                     activeSection === item.path.slice(1)
-                      ? 'text-yellow-400'
+                      ? 'text-blue-500'
                       : 'text-gray-300 hover:text-white'
                   }`}
                 >

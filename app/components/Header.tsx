@@ -1,66 +1,55 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
-const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const pathname = usePathname()
+const navLinks = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Portfolio', href: '#projects' },
+  { name: 'Testimonials', href: '#testimonials' },
+  { name: 'Contact', href: '#contact' },
+]
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/skills', label: 'Skills' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/contact', label: 'Contact' }
-  ]
-
+export default function Header() {
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/10 backdrop-blur-md' : 'bg-transparent'
-      }`}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.8 }}
+      className="fixed top-0 left-0 right-0 z-50 w-full max-w-7xl mx-auto p-4 md:p-8 flex items-center justify-between"
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-2xl font-bold text-white">
-            Portfolio
-          </Link>
+      {/* Logo */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 1 }}
+        className="flex items-center text-white text-2xl font-bold"
+      >
+        {/* Placeholder for logo icon */}
+        <div className="w-6 h-6 bg-blue-500 rounded-full mr-2" />
+        Ben Parker
+      </motion.div>
 
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    pathname === link.href
-                      ? 'text-yellow-400'
-                      : 'text-gray-300 hover:text-white'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+      {/* Navigation */}
+      <nav>
+        <ul className="flex space-x-6">
+          {navLinks.map((link) => (
+            <motion.li
+              key={link.name}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 1 + navLinks.indexOf(link) * 0.1 }}
+            >
+              <Link href={link.href}>
+                <p className="text-white hover:text-blue-400 transition-colors text-lg">
+                  {link.name}
+                </p>
+              </Link>
+            </motion.li>
+          ))}
+        </ul>
       </nav>
     </motion.header>
   )
-}
-
-export default Header 
+} 
