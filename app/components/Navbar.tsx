@@ -107,13 +107,19 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none"
+              className="text-gray-300 hover:text-white focus:outline-none transition-transform duration-300 p-2"
             >
-              <div className="w-6 h-6 flex flex-col justify-between">
-                <span className={`block w-full h-0.5 bg-current transform transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-2.5' : ''}`} />
-                <span className={`block w-full h-0.5 bg-current transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`} />
-                <span className={`block w-full h-0.5 bg-current transform transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
-              </div>
+              {isOpen ? (
+                // Cross (X) icon
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                // Hamburger icon
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
@@ -130,6 +136,14 @@ const Navbar = () => {
             className="md:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
           >
             <div className="flex flex-col items-center justify-center h-full">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 text-gray-300 hover:text-white focus:outline-none p-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
               {menuItems.map((item, i) => (
                 <motion.button
                   key={item.path}
