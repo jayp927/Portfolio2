@@ -127,16 +127,16 @@ const Navbar = () => {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="md:hidden absolute top-16 right-0 w-48"
+            className="md:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="flex flex-col items-center justify-center h-full">
               {menuItems.map((item, i) => (
                 <motion.button
                   key={item.path}
                   custom={i}
                   variants={menuItemVariants}
                   onClick={() => scrollToSection(item.path.slice(1))}
-                  className={`block w-full text-right px-3 py-2 text-base font-medium ${
+                  className={`block w-full text-center px-3 py-2 text-base font-medium ${
                     activeSection === item.path.slice(1)
                       ? 'text-yellow-400'
                       : 'text-gray-300 hover:text-white'
