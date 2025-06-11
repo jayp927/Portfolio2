@@ -35,10 +35,19 @@ const Projects = () => {
     setCurrentImageIndex((prev) => (prev - 1 + currentProject.images.length) % currentProject.images.length)
   }
 
+  const contentVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
     <section id="projects" className="py-20 px-0 relative">
       {/* PROJECTS Carousel */}
-      <div className="relative min-w-screen bg-[#eee] z-0 overflow-hidden flex flex-col items-center justify-end py-2">
+      <div className="relative w-full bg-[#eee] py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
         <div className="relative w-full h-16 flex items-center overflow-hidden">
           <span className="whitespace-nowrap font-extrabold text-blue-900 text-2xl tracking-wide px-2 animate-marquee">
             {projectsWords}
@@ -107,47 +116,49 @@ const Projects = () => {
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <h3 className="text-4xl font-bold text-white">{currentProject.name}</h3>
-                <div className="space-y-4">
+              <div className="space-y-6 px-4 md:px-8 lg:px-16 py-4">
+                <motion.h3 variants={contentVariants} className="text-4xl font-bold text-white">{currentProject.name}</motion.h3>
+                <motion.div variants={contentVariants} className="space-y-4">
                   {currentProject.description.map((paragraph: string, index: number) => (
-                    <p key={index} className="text-gray-300 text-lg leading-relaxed">
+                    <motion.p key={index} variants={contentVariants} className="text-gray-300 text-lg leading-relaxed">
                       {paragraph}
-                    </p>
+                    </motion.p>
                   ))}
-                </div>
-                <div>
+                </motion.div>
+                <motion.div variants={contentVariants}>
                   <h4 className="text-2xl font-bold text-white mb-4">Tech Stack:</h4>
                   <div className="flex flex-wrap gap-2">
                     {currentProject.techStack.map((tech: string, index: number) => (
-                      <span
+                      <motion.span
                         key={index}
+                        variants={contentVariants}
                         className="px-4 py-2 bg-yellow-400/10 text-yellow-400 rounded-full text-sm"
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
                 {currentProject.collaborators && (
-                  <div>
+                  <motion.div variants={contentVariants}>
                     <h4 className="text-2xl font-bold text-white mb-4">Collaborators:</h4>
                     <div className="flex flex-wrap gap-4">
                       {currentProject.collaborators.map((collaborator: { name: string; role: string; linkedin: string; }, index: number) => (
-                        <a
+                        <motion.a
                           key={index}
+                          variants={contentVariants}
                           href={collaborator.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-gray-300 hover:text-yellow-400 transition-colors border-b border-gray-600 hover:border-yellow-400"
                         >
                           {collaborator.name} - {collaborator.role}
-                        </a>
+                        </motion.a>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 )}
-                <div className="pt-4">
+                <motion.div variants={contentVariants} className="pt-4">
                   <a
                     href={currentProject.url}
                     target="_blank"
@@ -156,32 +167,37 @@ const Projects = () => {
                   >
                     View Project <span className="ml-2">→</span>
                   </a>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex justify-between items-center bg-white/5 backdrop-blur-sm rounded-xl p-4">
-            <button
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={contentVariants}
+            className="flex justify-between items-center bg-white/5 backdrop-blur-sm rounded-xl p-4 mt-8"
+          >
+            <motion.button
+              variants={contentVariants}
               onClick={prevProject}
               className="text-white hover:text-yellow-400 transition-colors"
             >
               ← Previous Project
-            </button>
-            <span className="text-white text-sm">
+            </motion.button>
+            <motion.span variants={contentVariants} className="text-white text-sm">
               {currentProjectIndex + 1} / {projects.length}
-            </span>
-            <button
+            </motion.span>
+            <motion.button
+              variants={contentVariants}
               onClick={nextProject}
               className="text-white hover:text-yellow-400 transition-colors"
             >
               Next Project →
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </div>
-
-      
     </section>
   )
 }
