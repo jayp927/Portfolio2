@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import Navbar from "./Navbar"
 import JPPreloader from "./JPPreloader"
 
 export default function AnimatedLayout({
@@ -34,7 +33,6 @@ export default function AnimatedLayout({
       {isFirstLoad && <JPPreloader />}
       {!isFirstLoad && (
         <>
-          <Navbar />
           <motion.div
             key={pathname}
             initial={{ opacity: 0 }}

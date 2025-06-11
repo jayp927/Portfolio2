@@ -15,61 +15,28 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full relative overflow-hidden">
       {/* --- Background Layer --- */}
-      <div className="fixed inset-0 w-full h-full z-0">
-        {/* Split radial background: orange left, blue right */}
-        <div className="absolute inset-0">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(ellipse at 30% 50%, #b55208 0%, transparent 60%), ' +
-                'radial-gradient(ellipse at 70% 50%, #003399 0%, transparent 60%)',
-              opacity: 0.5,
-              zIndex: 0,
-              width: '100%',
-              height: '100%',
-            }}
-          />
-          {/* Large Orange Circle (Bottom Left) */}
-          <div
-            className="absolute rounded-full blur-3xl"
-            style={{
-              background: 'radial-gradient(circle, #b55208 60%, transparent 100%)',
-              width: '700px',
-              height: '700px',
-              left: '-120px',
-              bottom: '-80px',
-              opacity: 0.7,
-              zIndex: 1,
-            }}
-          />
-          {/* Large Blue Circle (Top Right) */}
-          <div
-            className="absolute rounded-full blur-3xl"
-            style={{
-              background: 'radial-gradient(circle, #003399 60%, transparent 100%)',
-              width: '700px',
-              height: '700px',
-              right: '-120px',
-              top: '-80px',
-              opacity: 0.7,
-              zIndex: 2,
-            }}
-          />
-          {/* Silver Circle (Under Blue) */}
-          <div
-            className="absolute rounded-full blur-2xl"
-            style={{
-              background: 'radial-gradient(circle, #fff 0%, #C0C0C0 100%)',
-              width: '250px',
-              height: '250px',
-              right: '-40px',
-              top: '60px',
-              opacity: 0.35,
-              zIndex: 1,
-            }}
-          />
-        </div>
+      <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
+        {/* Orange Circle (Bottom Left, scaled, blurred, gradient) */}
+        <div
+          className="absolute bottom-0 left-0 w-[1050px] h-[1050px] rounded-full blur-3xl"
+          style={{
+            transform: 'translate(-50%, 50%)',
+            background: 'radial-gradient(circle at 60% 60%, #ea580c 0%, #fbbf24 100%)',
+            opacity: 0.6,
+            zIndex: 1,
+          }}
+        />
+        {/* Blue Circle (Top Right, scaled, blurred, gradient) */}
+        <div
+          className="absolute w-[1050px] h-[1050px] rounded-full blur-3xl"
+          style={{
+            top: '-300px',
+            right: '-300px',
+            background: 'radial-gradient(circle at 40% 40%, #1e40af 0%, #6366f1 100%)',
+            opacity: 0.6,
+            zIndex: 2,
+          }}
+        />
       </div>
 
       {/* --- Navigation Bar --- */}
@@ -87,15 +54,15 @@ export default function Home() {
       <section className="relative min-h-screen flex flex-col items-center justify-center z-10">
         <div className="flex flex-col items-center justify-center w-full h-full">
           {/* Name (two lines, bold, uppercase, white) */}
-          <h1 className="text-white text-5xl md:text-7xl font-extrabold uppercase font-michroma text-center leading-tight">
+          <h1 className="text-white text-5xl md:text-8xl font-extrabold uppercase font-michroma text-center leading-tight">
             Jay <br />Pipaliya
           </h1>
           {/* Subtitle */}
           <p className="text-white text-base md:text-xl font-light tracking-wide lowercase mt-2 mb-2 text-center">
             designer - coder - developer
           </p>
-          {/* Profile Image (square/rounded, grayscale, centered) */}
-          <div className="w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden grayscale border-4 border-white shadow-xl mx-auto">
+          {/* Profile Image (grayscale, overlaps carousel, high z-index) */}
+          <div className="w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden grayscale border-4 border-white shadow-xl mx-auto z-10 relative mb-[-40px]">
             <Image
               src="/images/jay.jpg"
               alt="Jay Pipaliya"
@@ -108,10 +75,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- Fixed Bottom ABOUT Carousel --- */}
-      <div className="fixed bottom-0 left-0 w-full bg-white py-2 z-30 overflow-hidden">
+      {/* --- ABOUT Carousel (bottom, not fixed, z-0) --- */}
+      <div className="relative w-full bg-white py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
         <div className="relative w-full h-10 flex items-center">
-          <div className="whitespace-nowrap font-extrabold text-blue-700 text-2xl md:text-3xl px-4 animate-marquee overflow-hidden">
+          <div className="whitespace-nowrap font-extrabold text-blue-800 text-2xl md:text-3xl px-4 animate-marquee overflow-hidden">
             {aboutWords}
           </div>
         </div>
