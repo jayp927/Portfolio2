@@ -51,18 +51,18 @@ export default function Home() {
       </nav>
 
       {/* --- Hero Content --- */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center z-10">
-        <div className="flex flex-col items-center justify-center w-full h-full">
+      <section className="relative min-h-screen flex flex-col items-center justify-end z-10">
+        <div className="flex flex-col items-center justify-end w-full h-full relative">
           {/* Name (two lines, bold, uppercase, white) */}
-          <h1 className="text-white text-5xl md:text-8xl font-extrabold uppercase font-michroma text-center leading-tight">
+          <h1 className="text-white text-5xl md:text-8xl font-extrabold uppercase font-michroma text-center leading-tight mt-4">
             Jay <br />Pipaliya
           </h1>
           {/* Subtitle */}
           <p className="text-white text-base md:text-xl font-light tracking-wide lowercase mt-2 mb-2 text-center">
             designer - coder - developer
           </p>
-          {/* Profile Image (grayscale, overlaps carousel, high z-index) */}
-          <div className="w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden grayscale border-4 border-white shadow-xl mx-auto z-10 relative mb-[-40px]">
+          {/* Profile Image (grayscale, rounded-[30px], overlaps carousel) */}
+          <div className="w-40 h-40 md:w-56 md:h-56 rounded-[30px] overflow-hidden grayscale border-4 border-white shadow-xl mx-auto z-[10] relative mb-[-40px]">
             <Image
               src="/images/jay.jpg"
               alt="Jay Pipaliya"
@@ -72,28 +72,27 @@ export default function Home() {
               priority
             />
           </div>
-        </div>
-      </section>
-
-      {/* --- ABOUT Carousel (bottom, not fixed, z-0) --- */}
-      <div className="relative w-full bg-white py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
-        <div className="relative w-full h-10 flex items-center">
-          <div className="whitespace-nowrap font-extrabold text-blue-800 text-2xl md:text-3xl px-4 animate-marquee overflow-hidden">
-            {aboutWords}
+          {/* --- ABOUT Carousel (bottom, not fixed, z-0) --- */}
+          <div className="relative w-full bg-[#eee] py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
+            <div className="relative w-full h-12 flex items-center">
+              <div className="whitespace-nowrap font-extrabold text-blue-900 text-3xl tracking-wide px-4 animate-marquee overflow-hidden">
+                {aboutWords}
+              </div>
+            </div>
+            <style jsx>{`
+              @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+              .animate-marquee {
+                display: inline-block;
+                min-width: 200%;
+                animation: marquee 18s linear infinite;
+              }
+            `}</style>
           </div>
         </div>
-        <style jsx>{`
-          @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-marquee {
-            display: inline-block;
-            min-width: 200%;
-            animation: marquee 18s linear infinite;
-          }
-        `}</style>
-      </div>
+      </section>
 
       <About />
       <Skills />
