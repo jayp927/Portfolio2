@@ -7,15 +7,23 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
+import { useState } from 'react'
 
 const aboutWords = Array(60).fill('ABOUT').join(' · ');
 
 interface AnimatedTextProps {
   text: string;
   className?: string;
+  onAnimationComplete?: () => void;
 }
 
-const AnimatedText = ({ text, className = "" }: AnimatedTextProps) => {
+interface AnimatedWordsProps {
+  text: string;
+  className?: string;
+  startAnimation: boolean;
+}
+
+const AnimatedText = ({ text, className = "", onAnimationComplete }: AnimatedTextProps) => {
   const words = text.split(" ");
 
   const container = {
@@ -53,6 +61,7 @@ const AnimatedText = ({ text, className = "" }: AnimatedTextProps) => {
       variants={container}
       initial="hidden"
       animate="visible"
+      onAnimationComplete={onAnimationComplete}
     >
       {words.map((word, wordIndex) => (
         <motion.div
@@ -77,7 +86,64 @@ const AnimatedText = ({ text, className = "" }: AnimatedTextProps) => {
   );
 };
 
+const AnimatedWords = ({ text, className = "", startAnimation }: AnimatedWordsProps) => {
+  const words = text.split(" ");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const child = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className={`flex items-center justify-center space-x-2 ${className}`}
+      variants={container}
+      initial="hidden"
+      animate={startAnimation ? "visible" : "hidden"}
+    >
+      {words.map((word, index) => (
+        <motion.span
+          key={index}
+          variants={child}
+          className="inline-block"
+        >
+          {word}
+          {index < words.length - 1 && <span className="mx-2">-</span>}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};
+
 export default function Home() {
+  const [startSubtitleAnimation, setStartSubtitleAnimation] = useState(false);
+
   return (
     <main className="min-h-screen w-full relative overflow-hidden">
       {/* --- Background Layer --- */}
@@ -123,8 +189,13 @@ export default function Home() {
         <AnimatedText 
           text="Jay Pipaliya" 
           className="text-white text-5xl md:text-8xl font-extrabold uppercase font-michroma leading-tight"
+          onAnimationComplete={() => setStartSubtitleAnimation(true)}
         />
-        <p className="text-white text-base md:text-xl font-light tracking-wide lowercase mt-2">designer - coder - developer</p>
+        <AnimatedWords 
+          text="designer coder developer" 
+          className="text-white text-base md:text-xl font-light tracking-wide lowercase mt-2"
+          startAnimation={startSubtitleAnimation}
+        />
       </section>
 
       {/* Image + Carousel (bottom) */}
