@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Dancing_Script } from 'next/font/google';
+import localFont from 'next/font/local';
 import "./globals.css";
 import AnimatedLayout from "./components/AnimatedLayout";
 import CustomCursor from "./components/CustomCursor";
 
-const dancingScript = Dancing_Script({
-  subsets: ['latin'],
-  variable: '--font-dancing-script',
+const michroma = localFont({
+  src: '../app/fonts/Michroma-Regular.ttf',
+  variable: '--font-michroma',
   display: 'swap',
 });
 
@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${dancingScript.variable} font-sans cursor-none antialiased`}>
+    <html lang="en" className={`${michroma.variable} scroll-smooth`}>
+      <body className={`${michroma.className} cursor-none antialiased`}>
         <CustomCursor />
         <AnimatedLayout>
           {children}

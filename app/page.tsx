@@ -9,105 +9,129 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 
+const aboutWords = Array(60).fill('ABOUT').join(' · ');
+
 export default function Home() {
   return (
-    <motion.main 
-      className="min-h-screen"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      
-      {/* Social Links - will be repositioned and styled */}
-      <SocialLinks />
-      
-      {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden p-4 md:p-8">
-        {/* Sticky Background Image */}
-        <div className="fixed inset-0 w-full h-full">
-          <Image
-            src="/images/background.jpg"
-            alt="Background"
-            fill
-            className="object-cover"
-            priority
+    <main className="min-h-screen w-full relative overflow-hidden">
+      {/* --- Background Layer --- */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        {/* Split radial background: orange left, blue right */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse at 30% 50%, #b55208 0%, transparent 60%), ' +
+                'radial-gradient(ellipse at 70% 50%, #003399 0%, transparent 60%)',
+              opacity: 0.5,
+              zIndex: 0,
+              width: '100%',
+              height: '100%',
+            }}
           />
-          <div className="absolute inset-0 bg-black/50" /> {/* Overlay for better text readability */}
+          {/* Large Orange Circle (Bottom Left) */}
+          <div
+            className="absolute rounded-full blur-3xl"
+            style={{
+              background: 'radial-gradient(circle, #b55208 60%, transparent 100%)',
+              width: '700px',
+              height: '700px',
+              left: '-120px',
+              bottom: '-80px',
+              opacity: 0.7,
+              zIndex: 1,
+            }}
+          />
+          {/* Large Blue Circle (Top Right) */}
+          <div
+            className="absolute rounded-full blur-3xl"
+            style={{
+              background: 'radial-gradient(circle, #003399 60%, transparent 100%)',
+              width: '700px',
+              height: '700px',
+              right: '-120px',
+              top: '-80px',
+              opacity: 0.7,
+              zIndex: 2,
+            }}
+          />
+          {/* Silver Circle (Under Blue) */}
+          <div
+            className="absolute rounded-full blur-2xl"
+            style={{
+              background: 'radial-gradient(circle, #fff 0%, #C0C0C0 100%)',
+              width: '250px',
+              height: '250px',
+              right: '-40px',
+              top: '60px',
+              opacity: 0.35,
+              zIndex: 1,
+            }}
+          />
         </div>
-        
-        {/* Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between h-full text-center lg:text-left gap-8">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col items-center lg:items-start"
-          >
-            <p className="text-blue-300 text-lg mb-2">Welcome to my portfolio!</p>
-            <h1 className="text-white text-5xl md:text-7xl font-bold leading-tight mb-6">
-              Hello, my <br /> name&apos;s <span className="text-blue-500">Jay</span>
-            </h1>
-            <p className="text-gray-300 text-xl md:text-2xl mb-8 max-w-md">
-              I&apos;m a FullStack Web Developer from SVNIT who is<span className="text-blue-400"> Space Enthusiast!🚀⭐</span> 
-            </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://drive.google.com/file/d/1MuqtAhoh2Iw8dwx9UhJMX4S5Ki-IVmb0/view?usp=drive_link"
-                download
-                className="bg-blue-600 text-white px-6 py-3 rounded-full text-lg hover:bg-blue-700 transition-colors shadow-lg"
-              >
-                Download cv
-              </a>
-              <a
-                href="#projects"
-                className="border border-white text-white px-6 py-3 rounded-full text-lg hover:bg-white hover:text-blue-600 transition-colors shadow-lg flex items-center"
-              >
-                See my work <span className="ml-2">→</span>
-              </a>
-            </div>
-          </motion.div>
+      </div>
 
-          {/* Right Content - Image and Circular Ring */}
-          <motion.div
-            initial={{ opacity: 0, x: 50, scale: 0.8 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative w-72 h-72 md:w-96 md:h-96 flex items-center justify-center z-20 animate-pulse-slow"
-          >
-            {/* Circular ring with pulse animation */}
-            <div className="absolute inset-0 rounded-full outline outline-4 outline-blue-500" />
-            {/* Image within the ring */}
-            <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl">
-              <Image
-                src="/images/jay.jpg"
-                alt="Jay Pipaliya"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </motion.div>
+      {/* --- Navigation Bar --- */}
+      <nav className="absolute top-0 left-0 right-0 p-4 text-center z-20">
+        <ul className="flex justify-center space-x-12 text-white text-lg font-michroma">
+          <li><a href="#about" className="hover:text-blue-400 transition-colors">about</a></li>
+          <li>·</li>
+          <li><a href="#projects" className="hover:text-blue-400 transition-colors">projects</a></li>
+          <li>·</li>
+          <li><a href="#contact" className="hover:text-blue-400 transition-colors">contact</a></li>
+        </ul>
+      </nav>
+
+      {/* --- Hero Content --- */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center z-10">
+        <div className="flex flex-col items-center justify-center w-full h-full">
+          {/* Name (two lines, bold, uppercase, white) */}
+          <h1 className="text-white text-5xl md:text-7xl font-extrabold uppercase font-michroma text-center leading-tight">
+            Jay <br />Pipaliya
+          </h1>
+          {/* Subtitle */}
+          <p className="text-white text-base md:text-xl font-light tracking-wide lowercase mt-2 mb-2 text-center">
+            designer - coder - developer
+          </p>
+          {/* Profile Image (square/rounded, grayscale, centered) */}
+          <div className="w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden grayscale border-4 border-white shadow-xl mx-auto">
+            <Image
+              src="/images/jay.jpg"
+              alt="Jay Pipaliya"
+              width={224}
+              height={224}
+              className="object-cover w-full h-full"
+              priority
+            />
+          </div>
         </div>
-
-        {/* Scroll to Top Button (Bottom Right) */}
-        <motion.a
-          href="#home"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors shadow-lg z-50"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-          </svg>
-        </motion.a>
       </section>
+
+      {/* --- Fixed Bottom ABOUT Carousel --- */}
+      <div className="fixed bottom-0 left-0 w-full bg-white py-2 z-30 overflow-hidden">
+        <div className="relative w-full h-10 flex items-center">
+          <div className="whitespace-nowrap font-extrabold text-blue-700 text-2xl md:text-3xl px-4 animate-marquee overflow-hidden">
+            {aboutWords}
+          </div>
+        </div>
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            display: inline-block;
+            min-width: 200%;
+            animation: marquee 18s linear infinite;
+          }
+        `}</style>
+      </div>
 
       <About />
       <Skills />
       <Projects />
       <Contact />
-    </motion.main>
+    </main>
   )
 }

@@ -9,7 +9,6 @@ const CustomCursor = () => {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true)
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
@@ -21,6 +20,8 @@ const CustomCursor = () => {
     document.addEventListener('mouseenter', handleMouseEnter)
     document.addEventListener('mouseleave', handleMouseLeave)
 
+    setIsMounted(true)
+
     return () => {
       window.removeEventListener('mousemove', updateMousePosition)
       document.removeEventListener('mouseenter', handleMouseEnter)
@@ -28,12 +29,14 @@ const CustomCursor = () => {
     }
   }, [])
 
-  if (!isMounted) return null
+  if (!isMounted) {
+    return null
+  }
 
   return (
-    <>
+    <div className="hidden md:block">
       <motion.div
-        className="fixed top-0 left-0 w-6 h-6 bg-white rounded-full pointer-events-none mix-blend-difference z-50 hidden md:block"
+        className="fixed top-0 left-0 w-6 h-6 bg-white rounded-full pointer-events-none mix-blend-difference z-50"
         animate={{
           x: mousePosition.x - 12,
           y: mousePosition.y - 12,
@@ -47,7 +50,7 @@ const CustomCursor = () => {
         }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-12 h-12 border-2 border-white rounded-full pointer-events-none mix-blend-difference z-50 hidden md:block"
+        className="fixed top-0 left-0 w-12 h-12 border-2 border-white rounded-full pointer-events-none mix-blend-difference z-50"
         animate={{
           x: mousePosition.x - 24,
           y: mousePosition.y - 24,
@@ -60,7 +63,7 @@ const CustomCursor = () => {
           mass: 0.2
         }}
       />
-    </>
+    </div>
   )
 }
 
