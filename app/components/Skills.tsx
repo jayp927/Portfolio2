@@ -15,7 +15,18 @@ import {
   SiPostgresql,
   SiRedux,
   SiExpress,
+  SiHtml5,
+  SiCss3,
+  SiCplusplus,
+  SiPython,
+  SiMysql,
 } from 'react-icons/si'
+import { FaJava } from 'react-icons/fa'
+
+const frontendSkills = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML', 'CSS', 'JavaScript'];
+const backendSkills = ['Node.js', 'Express', 'MongoDB', 'Firebase', 'REST APIs', 'JWT'];
+const codingSkills = ['C++', 'Data Structures', 'Algorithms', 'LeetCode', 'Codeforces', 'Problem Solving'];
+const projectsWords = Array(40).fill('PROJECTS').join(' · ');
 
 const Skills = () => {
   const skills = [
@@ -103,41 +114,99 @@ const Skills = () => {
   }
 
   return (
-    <section id="skills" className="py-20 px-4 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          className="text-4xl font-bold text-center mb-12 text-white"
-        >
-          Skills & Technologies
-        </motion.h2>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
-        >
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center p-6 bg-white/10 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-white/20"
-            >
-              <div className={`${skill.color} mb-4`}>{skill.icon}</div>
-              <h3 className="text-lg font-semibold text-white mb-2">
-                {skill.name}
-              </h3>
-              <p className="hidden md:block text-sm text-gray-300 text-center">
-                {skill.description}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
+    <section id="skills" className="py-16 px-4">
+      <h2 className="text-4xl font-bold text-center mb-10 text-white">Skills</h2>
+      <div className="flex flex-col md:flex-row justify-center gap-6 max-w-5xl mx-auto">
+        {/* Frontend Card */}
+        <div className="w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-blue-900/60 to-blue-700/40 p-8">
+          <h3 className="text-xl font-semibold text-white mb-4">Frontend</h3>
+          <div className="flex flex-col items-center space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiHtml5 /></div>
+              <span className="text-white text-lg">HTML5</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiCss3 /></div>
+              <span className="text-white text-lg">CSS3</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiJavascript /></div>
+              <span className="text-white text-lg">JavaScript</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiReact /></div>
+              <span className="text-white text-lg">React</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiNextdotjs /></div>
+              <span className="text-white text-lg">Next.js</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiTailwindcss /></div>
+              <span className="text-white text-lg">Tailwind CSS</span>
+            </div>
+          </div>
+        </div>
+        {/* Backend Card */}
+        <div className="w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-green-900/60 to-green-700/40 p-8">
+          <h3 className="text-xl font-semibold text-white mb-4">Backend</h3>
+          <div className="flex flex-col items-center space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiNodedotjs /></div>
+              <span className="text-white text-lg">Node.js</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiExpress /></div>
+              <span className="text-white text-lg">Express</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiMongodb /></div>
+              <span className="text-white text-lg">MongoDB</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiMysql /></div>
+              <span className="text-white text-lg">MySQL</span>
+            </div>
+          </div>
+        </div>
+        {/* Coding Card */}
+        <div className="w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-yellow-700/60 to-yellow-500/40 p-8">
+          <h3 className="text-xl font-semibold text-white mb-4">Coding</h3>
+          <div className="flex flex-col items-center space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiCplusplus /></div>
+              <span className="text-white text-lg">C++</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><SiPython /></div>
+              <span className="text-white text-lg">Python</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="text-4xl md:text-5xl text-white"><FaJava /></div>
+              <span className="text-white text-lg">Java</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* PROJECTS Carousel */}
+      <div className="relative w-full bg-[#eee] py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
+        <div className="relative w-full h-16 flex items-center overflow-hidden">
+          <span className="whitespace-nowrap font-extrabold text-blue-900 text-2xl tracking-wide px-2 animate-marquee">
+            {projectsWords}
+          </span>
+          
+        </div>
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+          }
+          .animate-marquee {
+            display: inline-block;
+            min-width: 100%;
+            animation: marquee 24s linear infinite;
+          }
+        `}</style>
       </div>
     </section>
   )
