@@ -20,24 +20,12 @@ const About = () => {
         >
           <motion.div variants={fadeInUp}>
             <h2 className="text-5xl font-bold mb-8 text-center">About Me</h2>
-            <div className="space-y-6">
-              <p className="text-gray-300 text-2xl leading-relaxed">
-                I'm a passionate full-stack developer with a keen eye for design and user experience.
-                I love creating beautiful, functional, and responsive web applications that solve real-world problems.
+            <div className="flex flex-col w-full">
+              <p className="text-gray-300 text-2xl leading-relaxed max-w-md self-start text-left">
+                I'm a passionate full-stack developer with a keen eye for design and user experience. I love creating beautiful, functional, and responsive web applications that solve real-world problems.
               </p>
-              <p className="text-gray-300 text-2xl leading-relaxed">
-                My journey in web development started with a curiosity to understand how things work on the internet,
-                which quickly grew into a passion for building interactive and engaging digital experiences.
-              </p>
-              <p className="text-gray-300 text-2xl leading-relaxed">
-                I specialize in modern web technologies and frameworks, always staying up-to-date with the latest trends
-                and best practices in the industry. My goal is to create seamless user experiences that not only look
-                great but also perform exceptionally well.
-              </p>
-              <p className="text-gray-300 text-2xl leading-relaxed">
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
-                or sharing my knowledge with the developer community. I believe in continuous learning and pushing the
-                boundaries of what's possible on the web.
+              <p className="text-gray-300 text-2xl leading-relaxed max-w-md self-end text-right mt-4">
+                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge with the developer community.
               </p>
             </div>
           </motion.div>
