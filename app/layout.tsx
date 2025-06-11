@@ -19,6 +19,9 @@ const eduNSWACT = localFont({
 export const metadata: Metadata = {
   title: "Jay Pipaliya",
   description: "Full Stack Developer Portfolio",
+  icons: {
+    icon: '/images/logo.jpeg',
+  },
 };
 
 export default function RootLayout({
