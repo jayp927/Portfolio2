@@ -44,6 +44,24 @@ const Projects = () => {
     },
   };
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut', staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: 'easeOut' },
+    },
+  };
+
   return (
     <section id="projects" className="py-20 px-0 relative">
       {/* PROJECTS Carousel */}
@@ -65,17 +83,21 @@ const Projects = () => {
           }
         `}</style>
       </div>
-      <div className="max-w-6xl pt-5 mx-auto relative z-10">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+        className="max-w-6xl pt-5 mx-auto relative z-10"
+      >
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          variants={itemVariants}
           className="text-5xl font-bold text-center mb-12"
         >
           Featured Projects
         </motion.h2>
 
-        <div className="max-w-4xl mx-auto">
+        <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentProjectIndex}
@@ -100,6 +122,8 @@ const Projects = () => {
                       alt={currentProject.name}
                       fill
                       className="object-cover"
+                      placeholder="blur"
+                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -196,8 +220,8 @@ const Projects = () => {
               Next Project →
             </motion.button>
           </motion.div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

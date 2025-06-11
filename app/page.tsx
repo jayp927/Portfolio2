@@ -145,7 +145,12 @@ export default function Home() {
   const [startSubtitleAnimation, setStartSubtitleAnimation] = useState(false);
 
   return (
-    <main className="min-h-screen w-full relative overflow-hidden">
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, ease: 'easeInOut' }}
+      className="min-h-screen w-full relative overflow-hidden"
+    >
       {/* --- Background Layer --- */}
       <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
         {/* Orange Circle (Bottom Left, scaled, blurred, gradient) */}
@@ -236,7 +241,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <Contact />
-    </main>
+    </motion.main>
   )
 }
 
