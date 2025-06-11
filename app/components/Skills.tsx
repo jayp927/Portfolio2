@@ -26,7 +26,6 @@ import { FaJava } from 'react-icons/fa'
 const frontendSkills = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML', 'CSS', 'JavaScript'];
 const backendSkills = ['Node.js', 'Express', 'MongoDB', 'Firebase', 'REST APIs', 'JWT'];
 const codingSkills = ['C++', 'Data Structures', 'Algorithms', 'LeetCode', 'Codeforces', 'Problem Solving'];
-const projectsWords = Array(40).fill('PROJECTS').join(' · ');
 
 const Skills = () => {
   const skills = [
@@ -187,26 +186,6 @@ const Skills = () => {
             </div>
           </div>
         </div>
-      </div>
-      {/* PROJECTS Carousel */}
-      <div className="relative w-full bg-[#eee] py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
-        <div className="relative w-full h-16 flex items-center overflow-hidden">
-          <span className="whitespace-nowrap font-extrabold text-blue-900 text-2xl tracking-wide px-2 animate-marquee">
-            {projectsWords}
-          </span>
-          
-        </div>
-        <style jsx>{`
-          @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-          }
-          .animate-marquee {
-            display: inline-block;
-            min-width: 100%;
-            animation: marquee 24s linear infinite;
-          }
-        `}</style>
       </div>
     </section>
   )

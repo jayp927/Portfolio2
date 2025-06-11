@@ -7,6 +7,8 @@ import useProjects from '../hooks/useProjects'
 import useMedia from '../hooks/useMedia'
 import { Project } from '../types'
 
+const projectsWords = Array(60).fill('PROJECTS').join(' · ');
+
 const Projects = () => {
   const projects: Project[] = useProjects()
   const { isMobile } = useMedia()
@@ -34,8 +36,27 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="py-20 px-4 relative">
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="projects" className="py-20 px-0 relative">
+      {/* PROJECTS Carousel */}
+      <div className="relative min-w-screen bg-[#eee] z-0 overflow-hidden flex flex-col items-center justify-end py-2">
+        <div className="relative w-full h-16 flex items-center overflow-hidden">
+          <span className="whitespace-nowrap font-extrabold text-blue-900 text-2xl tracking-wide px-2 animate-marquee">
+            {projectsWords}
+          </span>
+        </div>
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+          }
+          .animate-marquee {
+            display: inline-block;
+            min-width: 100%;
+            animation: marquee 24s linear infinite;
+          }
+        `}</style>
+      </div>
+      <div className="max-w-6xl pt-5 mx-auto relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -159,6 +180,8 @@ const Projects = () => {
           </div>
         </div>
       </div>
+
+      
     </section>
   )
 }
