@@ -10,6 +10,12 @@ const michroma = localFont({
   display: 'swap',
 });
 
+const eduNSWACT = localFont({
+  src: "./fonts/EduNSWACTCursive-VariableFont_wght.ttf",
+  variable: '--font-edu-nswact',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: "Jay Pipaliya",
   description: "Full Stack Developer Portfolio",
@@ -21,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${michroma.variable} scroll-smooth`}>
+    <html lang="en" className={`${michroma.variable} ${eduNSWACT.variable} scroll-smooth`}>
       <body className={`${michroma.className} cursor-none antialiased`}>
         <CustomCursor />
         <AnimatedLayout>

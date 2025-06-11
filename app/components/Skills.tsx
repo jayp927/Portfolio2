@@ -119,7 +119,7 @@ const Skills = () => {
         {/* Frontend Card */}
         <div className="w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-blue-900/60 to-blue-700/40 p-8">
           <h3 className="text-xl font-semibold text-white mb-4">Frontend</h3>
-          <div className="flex flex-col items-center space-y-4">
+          <div className="flex flex-col items-start space-y-4 px-4">
             <div className="flex items-center gap-2">
               <div className="text-4xl md:text-5xl text-white"><SiHtml5 /></div>
               <span className="text-white text-lg">HTML5</span>
@@ -149,7 +149,7 @@ const Skills = () => {
         {/* Backend Card */}
         <div className="w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-green-900/60 to-green-700/40 p-8">
           <h3 className="text-xl font-semibold text-white mb-4">Backend</h3>
-          <div className="flex flex-col items-center space-y-4">
+          <div className="flex flex-col items-start space-y-4 px-4">
             <div className="flex items-center gap-2">
               <div className="text-4xl md:text-5xl text-white"><SiNodedotjs /></div>
               <span className="text-white text-lg">Node.js</span>
@@ -171,7 +171,7 @@ const Skills = () => {
         {/* Coding Card */}
         <div className="w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-yellow-700/60 to-yellow-500/40 p-8">
           <h3 className="text-xl font-semibold text-white mb-4">Coding</h3>
-          <div className="flex flex-col items-center space-y-4">
+          <div className="flex flex-col items-start space-y-4 px-4">
             <div className="flex items-center gap-2">
               <div className="text-4xl md:text-5xl text-white"><SiCplusplus /></div>
               <span className="text-white text-lg">C++</span>
