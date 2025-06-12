@@ -209,24 +209,26 @@ const Projects = () => {
             initial="hidden"
             animate="visible"
             variants={contentVariants}
-            className="flex justify-between items-center bg-white/5 backdrop-blur-sm rounded-xl p-4 mt-8"
+            className="flex justify-between items-center bg-white/5 backdrop-blur-sm rounded-xl p-3 sm:p-4 mt-6 sm:mt-8"
           >
             <motion.button
               variants={contentVariants}
               onClick={prevProject}
-              className="text-white hover:text-yellow-400 transition-colors"
+              className="text-white hover:text-yellow-400 transition-colors text-sm sm:text-base whitespace-nowrap"
             >
-              ← Previous Project
+              <span className="hidden sm:inline">← Previous Project</span>
+              <span className="sm:hidden">← Prev</span>
             </motion.button>
-            <motion.span variants={contentVariants} className="text-white text-sm">
+            <motion.span variants={contentVariants} className="text-white text-xs sm:text-sm">
               {currentProjectIndex + 1} / {projects.length}
             </motion.span>
             <motion.button
               variants={contentVariants}
               onClick={nextProject}
-              className="text-white hover:text-yellow-400 transition-colors"
+              className="text-white hover:text-yellow-400 transition-colors text-sm sm:text-base whitespace-nowrap"
             >
-              Next Project →
+              <span className="hidden sm:inline">Next Project →</span>
+              <span className="sm:hidden">Next →</span>
             </motion.button>
           </motion.div>
         </motion.div>
