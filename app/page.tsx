@@ -166,10 +166,10 @@ export default function Home() {
         />
         {/* Blue Circle (Top Right, scaled, blurred, gradient) */}
         <div
-          className="absolute w-[1050px] h-[1050px] rounded-full blur-3xl"
+          className="absolute w-[600px] sm:w-[1050px] h-[600px] sm:h-[1050px] rounded-full blur-3xl"
           style={{
-            top: '-300px',
-            right: '-300px',
+            top: '-200px',
+            right: '-200px',
             background: 'radial-gradient(circle at 40% 40%, #1e40af 0%, #6366f1 100%)',
             opacity: 0.6,
             zIndex: 2,
