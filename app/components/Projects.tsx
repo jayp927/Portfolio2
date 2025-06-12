@@ -63,7 +63,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 px-0 relative">
+    <section id="projects" className="py-20 relative">
       {/* PROJECTS Carousel */}
       <div className="relative w-full bg-[#eee] py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
         <div className="relative w-full h-16 flex items-center overflow-hidden">
@@ -83,12 +83,13 @@ const Projects = () => {
           }
         `}</style>
       </div>
+      
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={sectionVariants}
-        className="max-w-6xl pt-5 mx-auto relative z-10"
+        className="max-w-6xl pt-5 mx-auto relative z-10 px-4"
       >
         <motion.h2
           variants={itemVariants}
@@ -209,7 +210,7 @@ const Projects = () => {
             initial="hidden"
             animate="visible"
             variants={contentVariants}
-            className="flex justify-between items-center bg-white/5 backdrop-blur-sm rounded-xl p-3 sm:p-4 mt-6 sm:mt-8"
+            className="flex justify-between items-center bg-white/5 backdrop-blur-sm rounded-xl p-4 mt-8"
           >
             <motion.button
               variants={contentVariants}

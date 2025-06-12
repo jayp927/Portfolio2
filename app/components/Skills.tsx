@@ -110,82 +110,83 @@ const Skills = () => {
   ]
 
   return (
-    <section id="skills" className="py-16 px-4">
+    <section id="skills" className="min-h-screen py-16 px-4 flex items-center">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={sectionVariants}
+        className="w-full"
       >
         <motion.h2 variants={itemVariants} className="text-4xl font-bold text-center mb-10 text-white">Skills</motion.h2>
-        <motion.div variants={sectionVariants} className="flex flex-col md:flex-row justify-center gap-6 max-w-5xl mx-auto">
+        <motion.div variants={sectionVariants} className="flex flex-col md:flex-row justify-center gap-4 sm:gap-6 max-w-5xl mx-auto">
           {/* Frontend Card */}
-          <motion.div variants={itemVariants} className="w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-blue-900/60 to-blue-700/40 p-8">
+          <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-blue-900/60 to-blue-700/40 p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-white mb-4">Frontend</h3>
-            <div className="flex flex-col items-start space-y-4 px-4">
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiHtml5 /></div>
-                <span className="text-white text-lg">HTML5</span>
+            <div className="flex flex-col items-center sm:items-start space-y-4 px-2 sm:px-4 w-full">
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiHtml5 /></div>
+                <span className="text-white text-base sm:text-lg">HTML5</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiCss3 /></div>
-                <span className="text-white text-lg">CSS3</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiCss3 /></div>
+                <span className="text-white text-base sm:text-lg">CSS3</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiJavascript /></div>
-                <span className="text-white text-lg">JavaScript</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiJavascript /></div>
+                <span className="text-white text-base sm:text-lg">JavaScript</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiReact /></div>
-                <span className="text-white text-lg">React</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiReact /></div>
+                <span className="text-white text-base sm:text-lg">React</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiNextdotjs /></div>
-                <span className="text-white text-lg">Next.js</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiNextdotjs /></div>
+                <span className="text-white text-base sm:text-lg">Next.js</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiTailwindcss /></div>
-                <span className="text-white text-lg">Tailwind CSS</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiTailwindcss /></div>
+                <span className="text-white text-base sm:text-lg">Tailwind CSS</span>
               </div>
             </div>
           </motion.div>
           {/* Backend Card */}
-          <motion.div variants={itemVariants} className="w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-green-900/60 to-green-700/40 p-8">
+          <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-green-900/60 to-green-700/40 p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-white mb-4">Backend</h3>
-            <div className="flex flex-col items-start space-y-4 px-4">
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiNodedotjs /></div>
-                <span className="text-white text-lg">Node.js</span>
+            <div className="flex flex-col items-center sm:items-start space-y-4 px-2 sm:px-4 w-full">
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiNodedotjs /></div>
+                <span className="text-white text-base sm:text-lg">Node.js</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiExpress /></div>
-                <span className="text-white text-lg">Express</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiExpress /></div>
+                <span className="text-white text-base sm:text-lg">Express</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiMongodb /></div>
-                <span className="text-white text-lg">MongoDB</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiMongodb /></div>
+                <span className="text-white text-base sm:text-lg">MongoDB</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiMysql /></div>
-                <span className="text-white text-lg">MySQL</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiMysql /></div>
+                <span className="text-white text-base sm:text-lg">MySQL</span>
               </div>
             </div>
           </motion.div>
           {/* Coding Card */}
-          <motion.div variants={itemVariants} className="w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-yellow-700/60 to-yellow-500/40 p-8">
+          <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-yellow-700/60 to-yellow-500/40 p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-white mb-4">Coding</h3>
-            <div className="flex flex-col items-start space-y-4 px-4">
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiCplusplus /></div>
-                <span className="text-white text-lg">C++</span>
+            <div className="flex flex-col items-center sm:items-start space-y-4 px-2 sm:px-4 w-full">
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiCplusplus /></div>
+                <span className="text-white text-base sm:text-lg">C++</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><SiPython /></div>
-                <span className="text-white text-lg">Python</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiPython /></div>
+                <span className="text-white text-base sm:text-lg">Python</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-4xl md:text-5xl text-white"><FaJava /></div>
-                <span className="text-white text-lg">Java</span>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><FaJava /></div>
+                <span className="text-white text-base sm:text-lg">Java</span>
               </div>
             </div>
           </motion.div>
