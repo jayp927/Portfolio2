@@ -170,6 +170,15 @@ const Skills = () => {
                 <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiMysql /></div>
                 <span className="text-white text-base sm:text-lg">MySQL</span>
               </div>
+              {/* Empty spaces to match Frontend card height */}
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiNodedotjs /></div>
+                <span className="text-white text-base sm:text-lg">Placeholder</span>
+              </div>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiNodedotjs /></div>
+                <span className="text-white text-base sm:text-lg">Placeholder</span>
+              </div>
             </div>
           </motion.div>
           {/* Coding Card */}
@@ -187,6 +196,19 @@ const Skills = () => {
               <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
                 <div className="text-3xl sm:text-4xl md:text-5xl text-white"><FaJava /></div>
                 <span className="text-white text-base sm:text-lg">Java</span>
+              </div>
+              {/* Empty spaces to match Frontend card height */}
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiCplusplus /></div>
+                <span className="text-white text-base sm:text-lg">Placeholder</span>
+              </div>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiCplusplus /></div>
+                <span className="text-white text-base sm:text-lg">Placeholder</span>
+              </div>
+              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
+                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiCplusplus /></div>
+                <span className="text-white text-base sm:text-lg">Placeholder</span>
               </div>
             </div>
           </motion.div>
