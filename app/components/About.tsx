@@ -31,7 +31,7 @@ const About = () => {
           variants={sectionVariants}
           className="max-w-4xl mx-auto"
         >
-          <motion.h2 variants={itemVariants} className="text-5xl font-bold mb-8 text-center" style={{ fontFamily: 'var(--font-edu-nswact)' }}>About Me</motion.h2>
+          <motion.h2 variants={itemVariants} className="text-5xl font-bold mb-8 text-center">About Me</motion.h2>
           <div className="flex flex-col w-full">
             <motion.p variants={itemVariants} className="text-gray-300 text-2xl leading-relaxed max-w-md self-start text-left" style={{ fontFamily: 'var(--font-edu-nswact)' }}>
               I'm a passionate full-stack developer with a keen eye for design and user experience. I love creating beautiful, functional, and responsive web applications that solve real-world problems.
