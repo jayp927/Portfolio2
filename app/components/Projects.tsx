@@ -98,23 +98,28 @@ const Projects = () => {
         </motion.h2>
 
         <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
-          <AnimatePresence mode="wait">
+          <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={currentProjectIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ 
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
+                duration: 0.5
+              }}
               className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 mb-8"
             >
-              <div className="relative w-full h-[450px] mb-8 rounded-xl overflow-hidden bg-zinc-900">
-                <AnimatePresence mode="wait">
+              <div className="relative aspect-video mb-8 rounded-xl overflow-hidden">
+                <AnimatePresence initial={false} mode="wait">
                   <motion.div
-                    key={currentImageIndex}
+                    key={`${currentProjectIndex}-${currentImageIndex}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.3 }}
                     className="w-full h-full relative"
                   >
                     <Image
@@ -140,22 +145,40 @@ const Projects = () => {
                 </div>
               </div>
 
-              <div className="space-y-6 px-4 md:px-8 lg:px-16 py-4">
-                <motion.h3 variants={contentVariants} className="text-4xl font-bold text-white">{currentProject.name}</motion.h3>
-                <motion.div variants={contentVariants} className="space-y-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="space-y-6"
+              >
+                <motion.h3 className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-edu-nswact)' }}>{currentProject.name}</motion.h3>
+                <motion.div className="space-y-4">
                   {currentProject.description.map((paragraph: string, index: number) => (
-                    <motion.p key={index} variants={contentVariants} className="text-gray-300 text-lg leading-relaxed">
+                    <motion.p 
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                      className="text-gray-300 text-lg leading-relaxed"
+                      style={{ fontFamily: 'var(--font-edu-nswact)' }}
+                    >
                       {paragraph}
                     </motion.p>
                   ))}
                 </motion.div>
-                <motion.div variants={contentVariants}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
                   <h4 className="text-2xl font-bold text-white mb-4">Tech Stack:</h4>
                   <div className="flex flex-wrap gap-2">
                     {currentProject.techStack.map((tech: string, index: number) => (
                       <motion.span
                         key={index}
-                        variants={contentVariants}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5 + index * 0.1 }}
                         className="px-4 py-2 bg-yellow-400/10 text-yellow-400 rounded-full text-sm"
                       >
                         {tech}
@@ -163,26 +186,12 @@ const Projects = () => {
                     ))}
                   </div>
                 </motion.div>
-                {currentProject.collaborators && (
-                  <motion.div variants={contentVariants}>
-                    <h4 className="text-2xl font-bold text-white mb-4">Collaborators:</h4>
-                    <div className="flex flex-wrap gap-4">
-                      {currentProject.collaborators.map((collaborator: { name: string; role: string; linkedin: string; }, index: number) => (
-                        <motion.a
-                          key={index}
-                          variants={contentVariants}
-                          href={collaborator.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-300 hover:text-yellow-400 transition-colors border-b border-gray-600 hover:border-yellow-400"
-                        >
-                          {collaborator.name} - {collaborator.role}
-                        </motion.a>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-                <motion.div variants={contentVariants} className="pt-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="pt-4"
+                >
                   <a
                     href={currentProject.url}
                     target="_blank"
@@ -192,7 +201,7 @@ const Projects = () => {
                     View Project <span className="ml-2">→</span>
                   </a>
                 </motion.div>
-              </div>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
 
