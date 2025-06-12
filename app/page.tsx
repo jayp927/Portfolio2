@@ -179,7 +179,7 @@ export default function Home() {
       {/* Navbar (top) */}
       <section className="w-full text-center pt-2 pb-2">
         <nav>
-          <ul className="inline-flex items-center justify-center space-x-10 text-white text-lg font-michroma tracking-wider">
+          <ul className="inline-flex items-center justify-center space-x-2 sm:space-x-10 text-white text-sm sm:text-lg font-michroma tracking-wider">
             <li><a href="#about" className="hover:text-blue-400 transition-colors">about</a></li>
             <li>·</li>
             <li><a href="#projects" className="hover:text-blue-400 transition-colors">projects</a></li>
