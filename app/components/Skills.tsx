@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   SiNextdotjs,
   SiReact,
@@ -22,12 +22,12 @@ import {
   SiMysql,
 } from 'react-icons/si'
 import { FaJava } from 'react-icons/fa'
-
-const frontendSkills = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML', 'CSS', 'JavaScript'];
-const backendSkills = ['Node.js', 'Express', 'MongoDB', 'Firebase', 'REST APIs', 'JWT'];
-const codingSkills = ['C++', 'Data Structures', 'Algorithms', 'LeetCode', 'Codeforces', 'Problem Solving'];
+import { useState, useRef } from 'react'
 
 const Skills = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -46,68 +46,53 @@ const Skills = () => {
     },
   };
 
-  const skills = [
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollPosition = container.scrollLeft;
+    const cardWidth = container.clientWidth;
+    const newIndex = Math.round(scrollPosition / cardWidth);
+    setCurrentIndex(newIndex);
+  };
+
+  const skillCategories = [
     {
-      name: 'Next.js',
-      icon: <SiNextdotjs className="w-12 h-12" />,
-      color: 'text-white',
-      description: 'Full-stack React framework for production',
-    },
-    {
-      name: 'React',
+      name: 'Frontend',
       icon: <SiReact className="w-12 h-12" />,
       color: 'text-blue-500',
-      description: 'JavaScript library for building user interfaces',
+      gradient: 'from-blue-900/60 to-blue-700/40',
+      skills: [
+        { name: 'HTML5', icon: <SiHtml5 /> },
+        { name: 'CSS3', icon: <SiCss3 /> },
+        { name: 'JavaScript', icon: <SiJavascript /> },
+        { name: 'React', icon: <SiReact /> },
+        { name: 'Next.js', icon: <SiNextdotjs /> },
+        { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+      ]
     },
     {
-      name: 'TypeScript',
-      icon: <SiTypescript className="w-12 h-12" />,
-      color: 'text-blue-600',
-      description: 'Typed superset of JavaScript',
-    },
-    {
-      name: 'Tailwind CSS',
-      icon: <SiTailwindcss className="w-12 h-12" />,
-      color: 'text-cyan-500',
-      description: 'Utility-first CSS framework',
-    },
-    {
-      name: 'Node.js',
+      name: 'Backend',
       icon: <SiNodedotjs className="w-12 h-12" />,
-      color: 'text-green-600',
-      description: 'JavaScript runtime environment',
-    },
-    {
-      name: 'MongoDB',
-      icon: <SiMongodb className="w-12 h-12" />,
       color: 'text-green-500',
-      description: 'NoSQL database',
+      gradient: 'from-green-900/60 to-green-700/40',
+      skills: [
+        { name: 'Node.js', icon: <SiNodedotjs /> },
+        { name: 'Express', icon: <SiExpress /> },
+        { name: 'MongoDB', icon: <SiMongodb /> },
+        { name: 'MySQL', icon: <SiMysql /> },
+      ]
     },
     {
-      name: 'Firebase',
-      icon: <SiFirebase className="w-12 h-12" />,
-      color: 'text-orange-500',
-      description: 'Backend-as-a-Service platform',
-    },
-    {
-      name: 'JavaScript',
-      icon: <SiJavascript className="w-12 h-12" />,
+      name: 'Coding',
+      icon: <SiCplusplus className="w-12 h-12" />,
       color: 'text-yellow-500',
-      description: 'Programming language of the web',
-    },
-    {
-      name: 'Git',
-      icon: <SiGit className="w-12 h-12" />,
-      color: 'text-orange-600',
-      description: 'Version control system',
-    },
-    {
-      name: 'Express',
-      icon: <SiExpress className="w-12 h-12" />,
-      color: 'text-gray-200',
-      description: 'Web application framework for Node.js',
-    },
-  ]
+      gradient: 'from-yellow-700/60 to-yellow-500/40',
+      skills: [
+        { name: 'C++', icon: <SiCplusplus /> },
+        { name: 'Python', icon: <SiPython /> },
+        { name: 'Java', icon: <FaJava /> },
+      ]
+    }
+  ];
 
   return (
     <section id="skills" className="min-h-screen py-16 px-4 flex items-center">
@@ -119,7 +104,106 @@ const Skills = () => {
         className="w-full"
       >
         <motion.h2 variants={itemVariants} className="text-4xl font-bold text-center mb-10 text-white">Skills</motion.h2>
-        <motion.div variants={sectionVariants} className="flex flex-col md:flex-row justify-center gap-4 sm:gap-6 max-w-5xl mx-auto">
+        
+        {/* Mobile Carousel View */}
+        <div className="md:hidden">
+          <div className="relative w-full max-w-[320px] mx-auto">
+            {/* Crate Container */}
+            <div className="relative w-full h-[500px] rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+              {/* Scrollable Container */}
+              <div 
+                ref={containerRef}
+                className="absolute inset-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+                onScroll={handleScroll}
+              >
+                <div className="flex h-full">
+                  {skillCategories.map((category, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex-none w-full h-full snap-center flex flex-col items-center justify-center p-4"
+                      initial={{ x: index === 0 ? 0 : 1000, opacity: 0 }}
+                      animate={{ 
+                        x: 0,
+                        opacity: 1,
+                        transition: {
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 20,
+                          mass: 1
+                        }
+                      }}
+                      exit={{ 
+                        x: -1000,
+                        opacity: 0,
+                        transition: {
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 20,
+                          mass: 1
+                        }
+                      }}
+                    >
+                      <motion.div 
+                        className={`w-full h-[460px] bg-gradient-to-b ${category.gradient} rounded-xl p-6 flex flex-col items-center backdrop-blur-sm`}
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        <motion.div 
+                          className={`${category.color} mb-4`}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                        >
+                          {category.icon}
+                        </motion.div>
+                        <motion.h3 
+                          className="text-2xl font-semibold text-white mb-8"
+                          initial={{ y: 20, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.3 }}
+                        >
+                          {category.name}
+                        </motion.h3>
+                        <div className="flex flex-col space-y-6 w-full">
+                          {category.skills.map((skill, skillIndex) => (
+                            <motion.div 
+                              key={skillIndex} 
+                              className="flex items-center gap-3"
+                              initial={{ x: 50, opacity: 0 }}
+                              animate={{ x: 0, opacity: 1 }}
+                              transition={{ delay: 0.4 + skillIndex * 0.1 }}
+                            >
+                              <div className="text-2xl text-white">{skill.icon}</div>
+                              <span className="text-white text-base">{skill.name}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-2 mt-4">
+              {skillCategories.map((_, index) => (
+                <motion.div
+                  key={index}
+                  className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-white/30'}`}
+                  animate={{
+                    scale: index === currentIndex ? 1.2 : 1,
+                    opacity: index === currentIndex ? 1 : 0.3
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Grid View */}
+        <motion.div variants={sectionVariants} className="hidden md:flex flex-col md:flex-row justify-center gap-4 sm:gap-6 max-w-5xl mx-auto">
           {/* Frontend Card */}
           <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-blue-900/60 to-blue-700/40 p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-white mb-4">Frontend</h3>
@@ -150,6 +234,7 @@ const Skills = () => {
               </div>
             </div>
           </motion.div>
+
           {/* Backend Card */}
           <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-green-900/60 to-green-700/40 p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-white mb-4">Backend</h3>
@@ -170,17 +255,9 @@ const Skills = () => {
                 <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiMysql /></div>
                 <span className="text-white text-base sm:text-lg">MySQL</span>
               </div>
-              {/* Empty spaces to match Frontend card height */}
-              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
-                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiNodedotjs /></div>
-                <span className="text-white text-base sm:text-lg">Placeholder</span>
-              </div>
-              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
-                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiNodedotjs /></div>
-                <span className="text-white text-base sm:text-lg">Placeholder</span>
-              </div>
             </div>
           </motion.div>
+
           {/* Coding Card */}
           <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-yellow-700/60 to-yellow-500/40 p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-white mb-4">Coding</h3>
@@ -197,25 +274,12 @@ const Skills = () => {
                 <div className="text-3xl sm:text-4xl md:text-5xl text-white"><FaJava /></div>
                 <span className="text-white text-base sm:text-lg">Java</span>
               </div>
-              {/* Empty spaces to match Frontend card height */}
-              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
-                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiCplusplus /></div>
-                <span className="text-white text-base sm:text-lg">Placeholder</span>
-              </div>
-              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
-                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiCplusplus /></div>
-                <span className="text-white text-base sm:text-lg">Placeholder</span>
-              </div>
-              <div className="flex items-center gap-2 w-full justify-center sm:justify-start opacity-0">
-                <div className="text-3xl sm:text-4xl md:text-5xl text-white"><SiCplusplus /></div>
-                <span className="text-white text-base sm:text-lg">Placeholder</span>
-              </div>
             </div>
           </motion.div>
         </motion.div>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default Skills 
+export default Skills; 
