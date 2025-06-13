@@ -152,26 +152,30 @@ export default function Home() {
       transition={{ duration: 0.8, ease: 'easeInOut' }}
       className="min-h-screen w-full relative overflow-hidden"
     >
+      {/* Dark theme background for mobile only */}
+      <div className="md:hidden absolute inset-0 bg-gradient-to-b from-zinc-800 via-zinc-900 to-black -z-10" />
+      
+      {/* Subtle noise texture overlay */}
+      <div className="md:hidden absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay -z-10" />
+
       {/* --- Background Layer --- */}
       <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
         {/* Orange Circle (Bottom Left, scaled, blurred, gradient) */}
         <div
-          className="absolute bottom-0 left-0 w-[1050px] h-[1050px] rounded-full blur-3xl"
+          className="absolute bottom-0 left-0 w-[1050px] h-[1050px] rounded-full blur-3xl md:opacity-60 opacity-15"
           style={{
             transform: 'translate(-50%, 50%)',
             background: 'radial-gradient(circle at 60% 60%, #ea580c 0%, #fbbf24 100%)',
-            opacity: 0.6,
             zIndex: 1,
           }}
         />
         {/* Blue Circle (Top Right, scaled, blurred, gradient) */}
         <div
-          className="absolute w-[600px] sm:w-[1050px] h-[600px] sm:h-[1050px] rounded-full blur-3xl"
+          className="absolute w-[600px] sm:w-[1050px] h-[600px] sm:h-[1050px] rounded-full blur-3xl md:opacity-60 opacity-15"
           style={{
             top: '-200px',
             right: '-200px',
             background: 'radial-gradient(circle at 40% 40%, #1e40af 0%, #6366f1 100%)',
-            opacity: 0.6,
             zIndex: 2,
           }}
         />
