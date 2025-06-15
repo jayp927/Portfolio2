@@ -27,6 +27,9 @@ import { useState, useRef } from 'react'
 const Skills = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -47,11 +50,59 @@ const Skills = () => {
   };
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const container = e.currentTarget;
-    const scrollPosition = container.scrollLeft;
-    const cardWidth = container.clientWidth;
-    const newIndex = Math.round(scrollPosition / cardWidth);
-    setCurrentIndex(newIndex);
+    if (!isDragging) {
+      const container = e.currentTarget;
+      const scrollPosition = container.scrollLeft;
+      const cardWidth = container.clientWidth;
+      const newIndex = Math.round(scrollPosition / cardWidth);
+      setCurrentIndex(newIndex);
+    }
+  };
+
+  const scrollToIndex = (index: number) => {
+    if (containerRef.current) {
+      const cardWidth = containerRef.current.clientWidth;
+      containerRef.current.scrollTo({
+        left: index * cardWidth,
+        behavior: 'smooth'
+      });
+      setCurrentIndex(index);
+    }
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    const touch = e.touches[0];
+    setStartX(touch.clientX);
+    setScrollLeft(containerRef.current?.scrollLeft || 0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !containerRef.current) return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    const x = touch.clientX;
+    const walk = (startX - x) * 1.5; // Reduced sensitivity
+    containerRef.current.scrollLeft = scrollLeft + walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    if (containerRef.current) {
+      const cardWidth = containerRef.current.clientWidth;
+      const scrollPosition = containerRef.current.scrollLeft;
+      const newIndex = Math.round(scrollPosition / cardWidth);
+      scrollToIndex(newIndex);
+    }
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    if (containerRef.current) {
+      const delta = e.deltaX;
+      const currentScroll = containerRef.current.scrollLeft;
+      containerRef.current.scrollLeft = currentScroll + delta;
+    }
   };
 
   const skillCategories = [
@@ -115,6 +166,15 @@ const Skills = () => {
                 ref={containerRef}
                 className="absolute inset-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
                 onScroll={handleScroll}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                onWheel={handleWheel}
+                style={{
+                  scrollBehavior: 'smooth',
+                  WebkitOverflowScrolling: 'touch',
+                  touchAction: 'pan-x',
+                }}
               >
                 <div className="flex h-full">
                   {skillCategories.map((category, index) => (
@@ -127,8 +187,8 @@ const Skills = () => {
                         opacity: 1,
                         transition: {
                           type: "spring",
-                          stiffness: 100,
-                          damping: 20,
+                          stiffness: 50,
+                          damping: 15,
                           mass: 1
                         }
                       }}
@@ -137,8 +197,8 @@ const Skills = () => {
                         opacity: 0,
                         transition: {
                           type: "spring",
-                          stiffness: 100,
-                          damping: 20,
+                          stiffness: 50,
+                          damping: 15,
                           mass: 1
                         }
                       }}
@@ -188,8 +248,9 @@ const Skills = () => {
             {/* Pagination Dots */}
             <div className="flex justify-center gap-2 mt-4">
               {skillCategories.map((_, index) => (
-                <motion.div
+                <motion.button
                   key={index}
+                  onClick={() => scrollToIndex(index)}
                   className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-white/30'}`}
                   animate={{
                     scale: index === currentIndex ? 1.2 : 1,
