@@ -79,11 +79,13 @@ const Skills = () => {
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging || !containerRef.current) return;
-    e.preventDefault();
     const touch = e.touches[0];
     const x = touch.clientX;
-    const walk = (startX - x) * 1.5; // Reduced sensitivity
-    containerRef.current.scrollLeft = scrollLeft + walk;
+    const walk = (startX - x);
+    if (Math.abs(walk) > 10) {
+      e.preventDefault();
+      containerRef.current.scrollLeft = scrollLeft + walk;
+    }
   };
 
   const handleTouchEnd = () => {
