@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   title: "Jay Pipaliya",
   description: "Full Stack Developer Portfolio",
   icons: {
-    icon: '/images/logo.jpeg',
+    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="%2318181B"/><text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="32" font-family="Michroma,Arial,sans-serif" fill="white">JP</text></svg>'
   },
 };
 

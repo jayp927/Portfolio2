@@ -23,10 +23,12 @@ import {
 } from 'react-icons/si'
 import { FaJava } from 'react-icons/fa'
 import { useState, useRef } from 'react'
+import { useAnimation } from 'framer-motion'
 
 const Skills = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollControls = useAnimation();
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -62,9 +64,10 @@ const Skills = () => {
   const scrollToIndex = (index: number) => {
     if (containerRef.current) {
       const cardWidth = containerRef.current.clientWidth;
-      containerRef.current.scrollTo({
-        left: index * cardWidth,
-        behavior: 'smooth'
+      const targetScroll = index * cardWidth;
+      scrollControls.start({
+        scrollLeft: targetScroll,
+        transition: { type: 'spring', stiffness: 120, damping: 18 }
       });
       setCurrentIndex(index);
     }
@@ -164,7 +167,7 @@ const Skills = () => {
             {/* Crate Container */}
             <div className="relative w-full h-[500px] rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.1)]">
               {/* Scrollable Container */}
-              <div 
+              <motion.div
                 ref={containerRef}
                 className="absolute inset-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
                 onScroll={handleScroll}
@@ -173,10 +176,11 @@ const Skills = () => {
                 onTouchEnd={handleTouchEnd}
                 onWheel={handleWheel}
                 style={{
-                  scrollBehavior: 'smooth',
+                  scrollBehavior: 'auto',
                   WebkitOverflowScrolling: 'touch',
                   touchAction: 'pan-x',
                 }}
+                animate={scrollControls}
               >
                 <div className="flex h-full">
                   {skillCategories.map((category, index) => (
@@ -205,9 +209,10 @@ const Skills = () => {
                         }
                       }}
                     >
-                      <motion.div 
+                      <motion.div
+                        key={currentIndex === index ? `active-${index}` : `inactive-${index}`}
                         className={`w-full h-[460px] bg-black rounded-xl p-6 flex flex-col items-center backdrop-blur-sm`}
-                        whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #FFD600' }}
+                        animate={currentIndex === index ? { scale: 1.08, boxShadow: '0 0 40px 0 #FFD600' } : { scale: 1, boxShadow: 'none' }}
                         transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       >
                         <motion.div 
@@ -244,7 +249,7 @@ const Skills = () => {
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
             
             {/* Pagination Dots */}

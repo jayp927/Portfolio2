@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
-// Utility to check if device is mobile using pointer: coarse
-const isMobileDevice = () => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+// Utility to check if device is phone (window.innerWidth < 640)
+const isPhoneScreen = () => typeof window !== 'undefined' && window.innerWidth < 640;
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -23,7 +23,7 @@ const CustomCursor = () => {
     document.addEventListener('mouseenter', handleMouseEnter)
     document.addEventListener('mouseleave', handleMouseLeave)
 
-    const checkMobile = () => setIsMobile(isMobileDevice());
+    const checkMobile = () => setIsMobile(isPhoneScreen());
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
