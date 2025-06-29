@@ -8,7 +8,7 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const aboutWords = Array(60).fill('ABOUT').join(' · ');
 
@@ -142,6 +142,48 @@ const AnimatedWords = ({ text, className = "", startAnimation }: AnimatedWordsPr
   );
 };
 
+const wordsList = ["designer", "coder", "developer"];
+
+const TypewriterWords = ({ className = "", startAnimation = false }: { className?: string; startAnimation?: boolean }) => {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    if (!startAnimation) return;
+    const currentWord = wordsList[currentWordIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && displayedText.length < currentWord.length) {
+      timeout = setTimeout(() => {
+        setDisplayedText(currentWord.slice(0, displayedText.length + 1));
+        setTypingSpeed(100);
+      }, 100);
+    } else if (isDeleting && displayedText.length > 0) {
+      timeout = setTimeout(() => {
+        setDisplayedText(currentWord.slice(0, displayedText.length - 1));
+        setTypingSpeed(50);
+      }, 50);
+    } else if (!isDeleting && displayedText.length === currentWord.length) {
+      timeout = setTimeout(() => setIsDeleting(true), 1000);
+    } else if (isDeleting && displayedText.length === 0) {
+      timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setCurrentWordIndex((prev) => (prev + 1) % wordsList.length);
+      }, 400);
+    }
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, currentWordIndex, startAnimation]);
+
+  return (
+    <div className={`text-white text-base md:text-xl font-light tracking-wide lowercase mt-2 h-8 ${className}`} style={{ minHeight: '2rem' }}>
+      {displayedText}
+      <span className="inline-block w-1 h-6 ml-1 align-middle bg-white animate-pulse" style={{ opacity: 0.7 }}>|</span>
+    </div>
+  );
+};
+
 export default function Home() {
   const [startSubtitleAnimation, setStartSubtitleAnimation] = useState(false);
 
@@ -158,29 +200,8 @@ export default function Home() {
       {/* Subtle noise texture overlay */}
       <div className="md:hidden absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay -z-10" />
 
-      {/* --- Background Layer --- */}
-      <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
-        {/* Orange Circle (Bottom Left, scaled, blurred, gradient) */}
-        <div
-          className="absolute bottom-0 left-0 w-[1050px] h-[1050px] rounded-full blur-3xl md:opacity-60 opacity-15"
-          style={{
-            transform: 'translate(-50%, 50%)',
-            background: 'radial-gradient(circle at 60% 60%, #ea580c 0%, #fbbf24 100%)',
-            zIndex: 1,
-          }}
-        />
-        {/* Blue Circle (Top Right, scaled, blurred, gradient) */}
-        <div
-          className="absolute w-[600px] sm:w-[1050px] h-[600px] sm:h-[1050px] rounded-full blur-3xl md:opacity-60 opacity-15"
-          style={{
-            top: '-200px',
-            right: '-200px',
-            background: 'radial-gradient(circle at 40% 40%, #1e40af 0%, #6366f1 100%)',
-            zIndex: 2,
-          }}
-        />
-      </div>
-
+      {/* HERO SECTION WRAPPER START */}
+      <div style={{ background: 'var(--hero-bg)', color: 'var(--hero-text)' }}>
       {/* Navbar (top) */}
       <section className="w-full text-center pt-2 pb-2 relative">
         {/* Icons on the left */}
@@ -228,9 +249,8 @@ export default function Home() {
           className="text-white text-5xl md:text-8xl font-extrabold uppercase font-michroma leading-tight"
           onAnimationComplete={() => setStartSubtitleAnimation(true)}
         />
-        <AnimatedWords 
-          text="designer coder developer" 
-          className="text-white text-base md:text-xl font-light tracking-wide lowercase mt-2"
+        <TypewriterWords 
+          className=""
           startAnimation={startSubtitleAnimation}
         />
       </section>
@@ -249,7 +269,7 @@ export default function Home() {
           />
         </div>
         {/* ABOUT Carousel (bottom, not fixed, z-0, no text overlap) */}
-        <div className="relative w-full bg-[#eee] py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
+        <div className="relative w-full bg-white py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
           <div className="relative w-full h-16 flex items-center overflow-hidden">
             <span className="whitespace-nowrap font-extrabold text-blue-900 text-2xl tracking-wide px-2 animate-marquee">
               {aboutWords}
@@ -268,11 +288,16 @@ export default function Home() {
           `}</style>
         </div>
       </section>
+      </div> {/* HERO SECTION WRAPPER END */}
 
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+      <div style={{ background: 'var(--about-bg)', color: 'var(--about-text)' }}><About /></div>
+      <div style={{ background: 'var(--projects-bg)', color: 'var(--projects-text)' }}><Skills /><Projects /></div>
+      <div style={{ background: 'var(--contact-bg)', color: 'var(--contact-text)' }}><Contact /></div>
+
+      {/* Footer */}
+      <footer style={{ background: 'var(--hero-bg)', color: '#aaa' }} className="w-full text-center py-4 text-xs font-michroma">
+        © {new Date().getFullYear()} Jay Pipaliya. All rights reserved.
+      </footer>
     </motion.main>
   )
 }

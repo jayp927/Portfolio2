@@ -206,8 +206,8 @@ const Skills = () => {
                       }}
                     >
                       <motion.div 
-                        className={`w-full h-[460px] bg-gradient-to-b ${category.gradient} rounded-xl p-6 flex flex-col items-center backdrop-blur-sm`}
-                        whileHover={{ scale: 1.02 }}
+                        className={`w-full h-[460px] bg-black rounded-xl p-6 flex flex-col items-center backdrop-blur-sm`}
+                        whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #FFD600' }}
                         transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       >
                         <motion.div 
@@ -268,7 +268,7 @@ const Skills = () => {
         {/* Desktop Grid View */}
         <motion.div variants={sectionVariants} className="hidden md:flex flex-col md:flex-row justify-center gap-4 sm:gap-6 max-w-5xl mx-auto">
           {/* Frontend Card */}
-          <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-blue-900/60 to-blue-700/40 p-6 sm:p-8">
+          <motion.div variants={itemVariants} whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #FFD600' }} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-black p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-white mb-4">Frontend</h3>
             <div className="flex flex-col items-center sm:items-start space-y-4 px-2 sm:px-4 w-full">
               <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
@@ -299,7 +299,7 @@ const Skills = () => {
           </motion.div>
 
           {/* Backend Card */}
-          <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-green-900/60 to-green-700/40 p-6 sm:p-8">
+          <motion.div variants={itemVariants} whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #FFD600' }} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-black p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-white mb-4">Backend</h3>
             <div className="flex flex-col items-center sm:items-start space-y-4 px-2 sm:px-4 w-full">
               <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
@@ -322,7 +322,7 @@ const Skills = () => {
           </motion.div>
 
           {/* Coding Card */}
-          <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-gradient-to-b from-yellow-700/60 to-yellow-500/40 p-6 sm:p-8">
+          <motion.div variants={itemVariants} whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #FFD600' }} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-black p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-white mb-4">Coding</h3>
             <div className="flex flex-col items-center sm:items-start space-y-4 px-2 sm:px-4 w-full">
               <div className="flex items-center gap-2 w-full justify-center sm:justify-start">

@@ -6,6 +6,7 @@ import { useState } from 'react'
 import useProjects from '../hooks/useProjects'
 import useMedia from '../hooks/useMedia'
 import { Project } from '../types'
+import { FaGithub } from 'react-icons/fa'
 
 const projectsWords = Array(60).fill('PROJECTS').join(' · ');
 
@@ -152,7 +153,7 @@ const Projects = () => {
                 transition={{ delay: 0.2 }}
                 className="space-y-6"
               >
-                <motion.h3 className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-edu-nswact)' }}>{currentProject.name}</motion.h3>
+                <motion.h3 className="text-5xl font-bold text-white" style={{ fontFamily: 'var(--font-libertinus-math)' }}>{currentProject.name}</motion.h3>
                 <motion.div className="space-y-4">
                   {currentProject.description.map((paragraph: string, index: number) => (
                     <motion.p 
@@ -161,7 +162,7 @@ const Projects = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 + index * 0.1 }}
                       className="text-gray-300 text-lg leading-relaxed"
-                      style={{ fontFamily: 'var(--font-edu-nswact)' }}
+                      style={{ fontFamily: 'var(--font-libertinus-math)' }}
                     >
                       {paragraph}
                     </motion.p>
@@ -191,15 +192,24 @@ const Projects = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="pt-4"
+                  className="pt-4 flex items-center gap-4"
                 >
                   <a
                     href={currentProject.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border border-white text-white px-6 py-3 rounded-full text-lg hover:bg-white hover:text-blue-600 transition-colors shadow-lg inline-flex items-center"
+                    className="border border-white text-white px-6 py-3 rounded-full text-lg hover:bg-white hover:text-blue-600 transition-colors shadow-lg inline-flex items-center hover:shadow-yellow-400/80 hover:shadow-lg"
                   >
                     View Project <span className="ml-2">→</span>
+                  </a>
+                  <a
+                    href={currentProject.github || '#'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-yellow-400 text-4xl transition-colors"
+                    style={{ marginLeft: '0.5rem' }}
+                  >
+                    <FaGithub />
                   </a>
                 </motion.div>
               </motion.div>

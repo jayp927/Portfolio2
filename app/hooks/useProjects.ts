@@ -20,7 +20,8 @@ const useProjects = (): Project[] => {
         "/images/projects/project1-2.png",
         "/images/projects/project1-3.png"
       ],
-      "url": "https://dudh-kela.netlify.app/"
+      "url": "https://dudh-kela.netlify.app/",
+      "github": "https://github.com/jayp927/HelperBuddy"
     },
     {
       "name": "No Cow Factory",
@@ -33,7 +34,8 @@ const useProjects = (): Project[] => {
       "images": [
         "/images/projects/project2-1.png",
         "/images/projects/project2-2.png",
-      ]
+      ],
+      "github": "https://github.com/jayp927/No-Cow-Factory"
     }
   ]
 }

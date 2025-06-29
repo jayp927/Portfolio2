@@ -4,6 +4,7 @@ export interface Project {
   techStack: string[];
   images: string[];
   url: string;
+  github?: string;
   collaborators?: {
     name: string;
     role: string;

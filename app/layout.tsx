@@ -10,9 +10,15 @@ const michroma = localFont({
   display: 'swap',
 });
 
-const eduNSWACT = localFont({
-  src: "./fonts/EduNSWACTCursive-VariableFont_wght.ttf",
-  variable: '--font-edu-nswact',
+const libertinusMath = localFont({
+  src: "./fonts/LibertinusMath-Regular.ttf",
+  variable: '--font-libertinus-math',
+  display: 'swap',
+});
+
+const bitcountGridDouble = localFont({
+  src: "./fonts/BitcountGridDouble-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf",
+  variable: '--font-bitcount-griddouble',
   display: 'swap',
 });
 
@@ -30,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${michroma.variable} ${eduNSWACT.variable} scroll-smooth`}>
+    <html lang="en" className={`${michroma.variable} ${libertinusMath.variable} ${bitcountGridDouble.variable} scroll-smooth`}>
       <body className={`${michroma.className} cursor-none antialiased`}>
         <CustomCursor />
         <AnimatedLayout>

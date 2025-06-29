@@ -7,6 +7,17 @@
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
   --black_alternative: #000000;
+  --hero-bg: #18181B;
+  --hero-text: #F5F5F5;
+  --about-bg: #2E1F1F;
+  --about-text: #EDEDED;
+  --projects-bg: #1B1B1B;
+  --projects-text: #F1F1F1;
+  --contact-bg: #3B2F2F;
+  --contact-text: #FAFAFA;
+  --accent-1: #C69C6D;
+  --accent-2: #E5B97B;
+  --accent-3: #F0E6DD;
 }
 
 .dark {
