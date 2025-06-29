@@ -3,9 +3,13 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
+// Utility to check if device is mobile using pointer: coarse
+const isMobileDevice = () => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
@@ -19,12 +23,19 @@ const CustomCursor = () => {
     document.addEventListener('mouseenter', handleMouseEnter)
     document.addEventListener('mouseleave', handleMouseLeave)
 
+    const checkMobile = () => setIsMobile(isMobileDevice());
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     return () => {
       window.removeEventListener('mousemove', updateMousePosition)
       document.removeEventListener('mouseenter', handleMouseEnter)
       document.removeEventListener('mouseleave', handleMouseLeave)
+      window.removeEventListener('resize', checkMobile);
     }
   }, [])
+
+  if (isMobile) return null;
 
   return (
     <>
