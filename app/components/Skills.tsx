@@ -64,10 +64,9 @@ const Skills = () => {
   const scrollToIndex = (index: number) => {
     if (containerRef.current) {
       const cardWidth = containerRef.current.clientWidth;
-      const targetScroll = index * cardWidth;
-      scrollControls.start({
-        scrollLeft: targetScroll,
-        transition: { type: 'spring', stiffness: 120, damping: 18 }
+      containerRef.current.scrollTo({
+        left: index * cardWidth,
+        behavior: 'smooth'
       });
       setCurrentIndex(index);
     }
@@ -180,7 +179,6 @@ const Skills = () => {
                   WebkitOverflowScrolling: 'touch',
                   touchAction: 'pan-x',
                 }}
-                animate={scrollControls}
               >
                 <div className="flex h-full">
                   {skillCategories.map((category, index) => (
