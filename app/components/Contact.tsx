@@ -67,7 +67,7 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="py-20 px-4 relative">
+    <section id="contact" className="py-20 px-4 relative min-h-screen">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-12 items-stretch">
         {/* Left Side: Info & Social */}
         <motion.div
