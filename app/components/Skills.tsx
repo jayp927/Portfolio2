@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { AnimatedText } from '../page'
+import AnimatedText from './AnimatedText'
 import {
   SiNextdotjs,
   SiReact,

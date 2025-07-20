@@ -7,7 +7,7 @@ import useProjects from '../hooks/useProjects'
 import useMedia from '../hooks/useMedia'
 import { Project } from '../types'
 import { FaGithub } from 'react-icons/fa'
-import { AnimatedText } from '../page'
+import AnimatedText from './AnimatedText'
 
 const projectsWords = Array(60).fill('PROJECTS').join(' · ');
 
