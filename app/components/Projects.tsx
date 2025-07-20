@@ -7,6 +7,7 @@ import useProjects from '../hooks/useProjects'
 import useMedia from '../hooks/useMedia'
 import { Project } from '../types'
 import { FaGithub } from 'react-icons/fa'
+import { AnimatedText } from '../page'
 
 const projectsWords = Array(60).fill('PROJECTS').join(' · ');
 
@@ -64,7 +65,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 relative">
+    <section id="projects" className="py-20 relative bg-[#0A1428]">
       {/* PROJECTS Carousel */}
       <div className="relative w-full bg-[#eee] py-2 z-0 overflow-hidden flex flex-col items-center justify-end">
         <div className="relative w-full h-16 flex items-center overflow-hidden">
@@ -96,7 +97,7 @@ const Projects = () => {
           variants={itemVariants}
           className="text-5xl font-bold text-center mb-12"
         >
-          Featured Projects
+          <AnimatedText text="Featured Projects" className="text-5xl font-bold text-center mb-12 bg-gradient-to-r from-yellow-300 via-yellow-100 to-yellow-400 bg-clip-text text-transparent drop-shadow-[0_2px_24px_#ffe066cc]" />
         </motion.h2>
 
         <motion.div variants={itemVariants} className="max-w-4xl mx-auto">

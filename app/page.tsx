@@ -24,7 +24,7 @@ interface AnimatedWordsProps {
   startAnimation: boolean;
 }
 
-const AnimatedText = ({ text, className = "", onAnimationComplete }: AnimatedTextProps) => {
+export const AnimatedText = ({ text, className = "", onAnimationComplete }: AnimatedTextProps) => {
   const words = text.split(" ");
 
   const container = {
@@ -186,6 +186,13 @@ const TypewriterWords = ({ className = "", startAnimation = false }: { className
 
 export default function Home() {
   const [startSubtitleAnimation, setStartSubtitleAnimation] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  const navLinks = [
+    { href: "#about", label: "About" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ];
 
   return (
     <motion.main
@@ -201,16 +208,16 @@ export default function Home() {
       <div className="md:hidden absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay -z-10" />
 
       {/* HERO SECTION WRAPPER START */}
-      <div style={{ background: 'var(--hero-bg)', color: 'var(--hero-text)' }}>
+      <div style={{ background: 'var(--main-bg)', color: 'var(--hero-text)' }}>
       {/* Navbar (top) */}
       <section className="w-full text-center pt-2 pb-2 relative">
         {/* Icons on the left */}
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center space-x-4">
+        <div className="absolute left-4 top-7 -translate-y-1/2 flex items-center space-x-4">
           <a 
             href="https://drive.google.com/file/d/1MuqtAhoh2Iw8dwx9UhJMX4S5Ki-IVmb0/view?usp=drive_link" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-red-500 hover:text-red-400 transition-colors"
+            className="text-red-500 hover:text-red-400 transition-colors hidden md:inline-flex"
           >
             <FaFilePdf className="h-8 w-8" />
           </a>
@@ -230,14 +237,23 @@ export default function Home() {
             </svg>
           </a>
         </div>
-
-        <nav>
-          <ul className="inline-flex items-center justify-center space-x-2 sm:space-x-10 text-white text-sm sm:text-lg font-michroma tracking-wider">
-            <li><a href="#about" className="hover:text-blue-400 transition-colors">About</a></li>
-            <li>·</li>
-            <li><a href="#projects" className="hover:text-blue-400 transition-colors">Projects</a></li>
-            <li>·</li>
-            <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
+        <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-fit backdrop-blur-md bg-black/40 border-b border-white/10 rounded-xl px-8 py-3 shadow-lg">
+          <ul className="inline-flex items-center justify-center space-x-2 sm:space-x-10 text-white text-sm sm:text-lg font-michroma tracking-wider relative">
+            {navLinks.map((link, idx) => (
+              <li key={link.href} className="relative">
+                <motion.a
+                  href={link.href}
+                  className="navbar-link px-3 py-1 rounded-md group"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+                  onMouseEnter={() => setHovered(link.href)}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  <span className="relative z-10 transition-colors duration-200 group-hover:neon-gradient {hovered === link.href ? 'neon-gradient' : ''}">{link.label}</span>
+                  <span className="navbar-underline"></span>
+                </motion.a>
+              </li>
+            )).reduce((acc: JSX.Element[], curr: JSX.Element, idx: number) => idx < navLinks.length - 1 ? [...acc, curr, <li key={`dot-${idx}`}>·</li>] : [...acc, curr], [])}
           </ul>
         </nav>
       </section>
@@ -246,7 +262,7 @@ export default function Home() {
       <section className="w-full text-center mt-20 mb-20">
         <AnimatedText 
           text="Jay Pipaliya" 
-          className="text-white text-5xl md:text-8xl font-extrabold uppercase font-michroma leading-tight"
+          className="text-5xl md:text-8xl font-extrabold uppercase font-michroma leading-tight bg-gradient-to-r from-yellow-300 via-yellow-100 to-yellow-400 bg-clip-text text-transparent drop-shadow-[0_2px_24px_#ffe066cc]"
           onAnimationComplete={() => setStartSubtitleAnimation(true)}
         />
         <TypewriterWords 
@@ -258,7 +274,7 @@ export default function Home() {
       {/* Image + Carousel (bottom) */}
       <section className="w-full relative flex flex-col items-center justify-end pt-8">
         {/* Image (overlaps carousel) */}
-        <div className="w-40 h-40 md:w-56 md:h-56 rounded-[30px] overflow-hidden grayscale border-4 border-white shadow-xl mx-auto z-[10] relative mb-[-40px]">
+        <div className="w-40 h-40 md:w-56 md:h-56 rounded-[30px] overflow-hidden border-4 border-white shadow-xl mx-auto z-[10] relative mb-[-20px]">
           <Image
             src="/images/jay.jpg"
             alt="Jay Pipaliya"
@@ -290,9 +306,9 @@ export default function Home() {
       </section>
       </div> {/* HERO SECTION WRAPPER END */}
 
-      <div style={{ background: 'var(--about-bg)', color: 'var(--about-text)' }}><About /></div>
-      <div style={{ background: 'var(--projects-bg)', color: 'var(--projects-text)' }}><Skills /><Projects /></div>
-      <div style={{ background: 'var(--contact-bg)', color: 'var(--contact-text)' }}><Contact /></div>
+      <div style={{ background: 'var(--main-bg)', color: 'var(--about-text)' }}><About /></div>
+      <div style={{ background: 'var(--main-bg)', color: 'var(--projects-text)' }}><Skills /><Projects /></div>
+      <div style={{ background: 'var(--main-bg)', color: 'var(--contact-text)' }}><Contact /></div>
 
       {/* Footer */}
       <footer style={{ background: 'var(--hero-bg)', color: '#aaa' }} className="w-full text-center py-4 text-xs font-michroma">

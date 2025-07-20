@@ -49,7 +49,7 @@ export default function About() {
   }, [aboutText]);
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-[#0A1428] text-white">
       {/* About Me Text Section */}
       <motion.section 
         className="max-w-6xl mx-auto px-4 py-12 pt-20"
@@ -94,7 +94,7 @@ export default function About() {
       </motion.section>
 
       {/* Skills Section */}
-      <div className="relative z-10 bg-black">
+      <div className="relative z-10 bg-[#0A1428]">
         <Skills />
       </div>
 

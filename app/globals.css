@@ -4,16 +4,17 @@
 
 :root {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  --background-start-rgb: 10, 20, 40; /* dark navy blue */
+  --background-end-rgb: 10, 20, 40;   /* dark navy blue */
   --black_alternative: #000000;
-  --hero-bg: #18181B;
+  --main-bg: #0A1428; /* dark navy blue */
+  --hero-bg: #0A1428;
   --hero-text: #F5F5F5;
-  --about-bg: #2E1F1F;
+  --about-bg: #0A1428;
   --about-text: #EDEDED;
-  --projects-bg: #1B1B1B;
+  --projects-bg: #0A1428;
   --projects-text: #F1F1F1;
-  --contact-bg: #3B2F2F;
+  --contact-bg: #0A1428;
   --contact-text: #FAFAFA;
   --accent-1: #C69C6D;
   --accent-2: #E5B97B;
@@ -63,4 +64,42 @@ html {
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+/* Navbar advanced hover effects */
+.navbar-link {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+.navbar-link:hover {
+  transform: scale(1.08);
+}
+
+.navbar-underline {
+  position: absolute;
+  left: 50%;
+  bottom: 0.1em;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #fff7e6 0%, #ffe066 100%);
+  border-radius: 2px;
+  box-shadow: 0 0 8px 2px #ffe06699;
+  opacity: 0.9;
+  transform: translateX(-50%) scaleX(0.3);
+  transition: width 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.navbar-link:hover .navbar-underline {
+  width: 90%;
+  transform: translateX(-50%) scaleX(1);
+}
+
+.neon-gradient {
+  background: linear-gradient(90deg, #ffe066 0%, #fff7e6 50%, #ffe066 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  filter: drop-shadow(0 0 6px #ffe066cc);
+  transition: filter 0.3s;
 }

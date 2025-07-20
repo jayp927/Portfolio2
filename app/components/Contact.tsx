@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { FaFilePdf } from 'react-icons/fa'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -58,16 +59,17 @@ const Contact = () => {
       url: 'https://www.linkedin.com/in/jay-pipaliya-117369326/',
       color: 'hover:text-blue-500'
     },
+    // Resume link for mobile only
     {
-      name: 'Email',
-      icon: <FaEnvelope className="w-10 h-10" />,
-      url: 'mail.to:jaypipaliya0101@gmail.com',
-      color: 'hover:text-red-500'
-    }
+      name: 'Resume',
+      icon: <FaFilePdf className="w-10 h-10 text-gray-400 group-hover:text-red-500 md:group-hover:text-red-500 transition-colors duration-200" />,
+      url: 'https://drive.google.com/file/d/1MuqtAhoh2Iw8dwx9UhJMX4S5Ki-IVmb0/view?usp=drive_link',
+      color: 'hover:text-yellow-400 md:hover:text-red-500 group',
+    },
   ]
 
   return (
-    <section id="contact" className="py-20 px-4 relative min-h-screen">
+    <section id="contact" className="py-20 px-4 relative min-h-screen bg-[#0A1428]">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-12 items-stretch">
         {/* Left Side: Info & Social */}
         <motion.div
@@ -92,7 +94,10 @@ const Contact = () => {
                   className={`flex items-center gap-4 text-2xl text-gray-400 transition-colors ${link.color}`}
                 >
                   {link.icon}
-                  <span style={{ fontFamily: 'var(--font-bitcount-griddouble)', fontSize: '1.2em', letterSpacing: '0.04em' }}>
+                  <span
+                    className="transition-colors duration-200 group-hover:text-yellow-400 md:group-hover:text-red-500"
+                    style={{ fontFamily: 'var(--font-bitcount-griddouble)', fontSize: '1.2em', letterSpacing: '0.04em' }}
+                  >
                     {link.name}
                   </span>
                 </a>

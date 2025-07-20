@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatedText } from '../page'
 import {
   SiNextdotjs,
   SiReact,
@@ -150,7 +151,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="min-h-screen py-16 px-4 flex items-center">
+    <section id="skills" className="min-h-screen py-16 px-4 flex items-center bg-[#0A1428]">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -158,7 +159,10 @@ const Skills = () => {
         variants={sectionVariants}
         className="w-full"
       >
-        <motion.h2 variants={itemVariants} className="text-4xl font-bold text-center mb-10 text-white">Skills</motion.h2>
+        {/* Animated Skills Heading */}
+        <div className="mb-10">
+          <AnimatedText text="Skills" className="text-4xl font-bold text-center bg-gradient-to-r from-yellow-300 via-yellow-100 to-yellow-400 bg-clip-text text-transparent drop-shadow-[0_2px_24px_#ffe066cc]" />
+        </div>
         
         {/* Mobile Carousel View */}
         <div className="md:hidden">
@@ -209,7 +213,7 @@ const Skills = () => {
                     >
                       <motion.div
                         key={currentIndex === index ? `active-${index}` : `inactive-${index}`}
-                        className={`w-full h-[460px] bg-black rounded-xl p-6 flex flex-col items-center backdrop-blur-sm`}
+                        className={`w-full h-[460px] bg-white/10 backdrop-blur-md rounded-xl p-6 flex flex-col items-center shadow-lg transition-colors duration-300 group hover:bg-[#162447]/90 hover:backdrop-blur-lg`}
                         animate={currentIndex === index ? { scale: 1.08, boxShadow: '0 0 40px 0 #FFD600' } : { scale: 1, boxShadow: 'none' }}
                         transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       >
@@ -271,7 +275,7 @@ const Skills = () => {
         {/* Desktop Grid View */}
         <motion.div variants={sectionVariants} className="hidden md:flex flex-col md:flex-row justify-center gap-4 sm:gap-6 max-w-5xl mx-auto">
           {/* Frontend Card */}
-          <motion.div variants={itemVariants} whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #FFD600' }} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-black p-6 sm:p-8">
+          <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-white/10 backdrop-blur-md p-6 sm:p-8 transition-colors duration-300 group hover:bg-[#162447]/90 hover:backdrop-blur-lg">
             <h3 className="text-xl font-semibold text-white mb-4">Frontend</h3>
             <div className="flex flex-col items-center sm:items-start space-y-4 px-2 sm:px-4 w-full">
               <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
@@ -302,7 +306,7 @@ const Skills = () => {
           </motion.div>
 
           {/* Backend Card */}
-          <motion.div variants={itemVariants} whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #FFD600' }} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-black p-6 sm:p-8">
+          <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-white/10 backdrop-blur-md p-6 sm:p-8 transition-colors duration-300 group hover:bg-[#162447]/90 hover:backdrop-blur-lg">
             <h3 className="text-xl font-semibold text-white mb-4">Backend</h3>
             <div className="flex flex-col items-center sm:items-start space-y-4 px-2 sm:px-4 w-full">
               <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
@@ -325,7 +329,7 @@ const Skills = () => {
           </motion.div>
 
           {/* Coding Card */}
-          <motion.div variants={itemVariants} whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #FFD600' }} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-black p-6 sm:p-8">
+          <motion.div variants={itemVariants} className="w-full md:w-[280px] flex flex-col items-center rounded-xl shadow-lg bg-white/10 backdrop-blur-md p-6 sm:p-8 transition-colors duration-300 group hover:bg-[#162447]/90 hover:backdrop-blur-lg">
             <h3 className="text-xl font-semibold text-white mb-4">Coding</h3>
             <div className="flex flex-col items-center sm:items-start space-y-4 px-2 sm:px-4 w-full">
               <div className="flex items-center gap-2 w-full justify-center sm:justify-start">
